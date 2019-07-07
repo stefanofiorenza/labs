@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,14 +19,13 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zaxxer.hikari.HikariDataSource;
-
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.knits.tms.service,com.knits.tms.dao")
-@PropertySource("classpath:database.properties")
-public class AppConfig {
+@PropertySource("classpath:database-int-test.properties")
+public class AppConfigIntegrationTestEnv {
 
+	
 	private final String URL = "url";
 	private final String USER = "dbuser";
 	private final String DRIVER = "driver";
@@ -39,17 +39,12 @@ public class AppConfig {
 
 	@Bean
 	public DataSource dataSource() {
-		  HikariDataSource ds = new HikariDataSource();
-	      ds.setMaximumPoolSize(100);
-	      ds.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
-	      ds.addDataSourceProperty("url", env.getProperty(URL));
-	      ds.addDataSourceProperty("user",  env.getProperty(USER));
-	      ds.addDataSourceProperty("password", env.getProperty(PASSWORD));
-	      ds.addDataSourceProperty("cachePrepStmts", true);
-	      ds.addDataSourceProperty("prepStmtCacheSize", 250);
-	      ds.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
-	      ds.addDataSourceProperty("useServerPrepStmts", true);
-	      return ds;	 
+		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+		driverManagerDataSource.setUrl(env.getProperty(URL));
+		driverManagerDataSource.setUsername(env.getProperty(USER));
+		driverManagerDataSource.setPassword(env.getProperty(PASSWORD));
+		driverManagerDataSource.setDriverClassName(env.getProperty(DRIVER));
+		return driverManagerDataSource;
 	}
 
 	 @Bean

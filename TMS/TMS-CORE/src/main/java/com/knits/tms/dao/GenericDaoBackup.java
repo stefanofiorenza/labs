@@ -21,55 +21,54 @@ import com.knits.tms.model.AbstractEntity;
 
 @Repository
 @Transactional(propagation=Propagation.MANDATORY)
-public abstract class GenericDao<T extends AbstractEntity> {
+public class GenericDaoBackup {
 	
 	@PersistenceContext
 	protected EntityManager entityManager;
 	
 	
-	protected abstract Class<T> getEntityClass();
 
-	public <PK extends Serializable> T findById(PK id) {
-		return entityManager.find(getEntityClass(), id);
+	public <T extends AbstractEntity, PK extends Serializable> T findById(Class<T> newInstance, PK id) {
+		return entityManager.find(newInstance, id);
 	}
 	
 	
-	public <PK extends Serializable> List<T> findByIds(Set<PK> ids){
+	public <T extends AbstractEntity, PK extends Serializable> List<T> findByIds(Class<T> clas, Set<PK> ids){
 		List<T> resultList= new ArrayList<T>();
 		for (PK id : ids){
-			resultList.add(findById(id));
+			resultList.add(findById(clas,id));
 		}
 		return resultList;
 	}
 	
-	public List<T> listAll(){
+	public <T extends AbstractEntity, PK extends Serializable> List<T> listAll(Class<T> entityClass){
 		final String query = new StringBuffer("from ").append(
-				getEntityClass().getSimpleName()).append(" order by id").toString();		
-		return entityManager.createQuery(query,getEntityClass()).getResultList();
+				entityClass.getSimpleName()).append(" order by id").toString();		
+		return entityManager.createQuery(query,entityClass).getResultList();
 	}
 			
-	public T save(T newInstance) {
+	public <T extends AbstractEntity> T save(T newInstance) {
 		entityManager.persist(newInstance);
 		return newInstance;
 	}
 	
 
-	public void  update(T updatedObject) {
+	public <T> void  update(T updatedObject) {
 		entityManager.merge(updatedObject);
 	}
 
 	
-	public <PK extends Serializable> void delete(PK id) {
-		T persistentObject = findById(id);
+	public <T extends AbstractEntity, PK extends Serializable> void delete(Class<T> clas, PK id) {
+		T persistentObject = entityManager.find(clas, id);
 		if(persistentObject==null){
 			throw new DaoException("No records found for Id: " + id
-					+ " for entity: " + getEntityClass().getSimpleName());
+					+ " for entity: " + clas.getName());
 		}
 		entityManager.remove(persistentObject);
 	}
 	
 	
-	public <PK extends Serializable> void delete(T peristentEntityToDelete) {
+	public <T extends AbstractEntity, PK extends Serializable> void delete(T peristentEntityToDelete) {
 		entityManager.remove(peristentEntityToDelete);
 	}
 	
@@ -77,20 +76,16 @@ public abstract class GenericDao<T extends AbstractEntity> {
 		entityManager.flush();
 	}
 	
-	protected TypedQuery<T> createNamedQuery(String queryName){
-		return this.entityManager.createNamedQuery(queryName,getEntityClass());
+	protected <T extends AbstractEntity> TypedQuery<T> createNamedQuery(Class<T>entityClass, String queryName){
+		return this.entityManager.createNamedQuery(queryName,entityClass);
 	}
 	
 	
-	protected TypedQuery<T> createQuery(String jpqlQuery){
-		return this.entityManager.createQuery(jpqlQuery,getEntityClass());
+	protected <T extends AbstractEntity> TypedQuery<T> createQuery(Class<T>entityClass, String jpqlQuery){
+		return this.entityManager.createQuery(jpqlQuery,entityClass);
 	}
 		
-	protected TypedQuery<T> compileCriteriaQuery(CriteriaQuery<T> criteriaQuery){
-		return this.entityManager.createQuery(criteriaQuery);
-	}
-	
-	protected <C> TypedQuery<C> compileCriteriaQuery(Class<C> clazz,CriteriaQuery<C> criteriaQuery){
+	protected <T extends AbstractEntity> TypedQuery<T> compileCriteriaQuery(Class<T>entityClass, CriteriaQuery<T> criteriaQuery){
 		return this.entityManager.createQuery(criteriaQuery);
 	}
 	

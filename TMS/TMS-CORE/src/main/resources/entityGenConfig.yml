@@ -1,0 +1,7 @@
+jdbcSettings:
+  url: "jdbc:mysql://localhost:3306/TMS"
+  username: "root"
+  password: "stefan0"
+  driverClassName: "com.mysql.jdbc.Driver"
+
+packageName: "com.knits.tms.model"
