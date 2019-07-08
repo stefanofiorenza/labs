@@ -99,19 +99,6 @@ public abstract class GenericDao<T extends AbstractEntity> {
 	}
 	
 
-	protected void addFiltersToCriteria(CriteriaBuilder cb,CriteriaQuery cq, List<Predicate> filtersAsPredicates,String queryName) {
-		
-		 if (filtersAsPredicates.size() == 1) {
-			cq.where(filtersAsPredicates.get(0));
-		} else {
-			Predicate[] predicatesArr = new Predicate[filtersAsPredicates.size()];
-			for (int i = 0; i < filtersAsPredicates.size(); i++) {
-				predicatesArr[i] = filtersAsPredicates.get(i);
-			}
-			cq.where(cb.and(predicatesArr));
-			// cq.where(cb.and(filtersAsParams.toArray(new Predicate[0])));
-		}
-	}
 	
 	
 }
