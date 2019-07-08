@@ -6,13 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
@@ -34,8 +37,8 @@ public class Trainer extends AbstractEntity{
 	
 	private String email;
 	
-	@OneToMany( mappedBy="trainer")
-	@Getter
+	@OneToMany(fetch=FetchType.LAZY , mappedBy="trainer")
+	@Setter(value=AccessLevel.NONE)
 	private List<Schedule> lecturesScheduled= new ArrayList<>();
 	
 	

@@ -6,16 +6,20 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
@@ -24,9 +28,11 @@ public class Edition  extends AbstractEntity{
 	
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable=false)
 	private Date startDate;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable=false)
 	private Date endDate;
 	
 	@Temporal(TemporalType.DATE)
@@ -44,13 +50,13 @@ public class Edition  extends AbstractEntity{
 	
 	
 
-	@OneToMany( mappedBy="edition")
-	@Getter
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="edition")
+	@Setter(value=AccessLevel.NONE)
 	private List<Lecture> lectures = new ArrayList<>();
 	
 	
-	@OneToMany( mappedBy="edition")
-	@Getter
+	@OneToMany(fetch=FetchType.LAZY ,mappedBy="edition")
+	@Setter(value=AccessLevel.NONE)
 	private List<Subscription> subscriptions = new ArrayList<>();
 	
 }

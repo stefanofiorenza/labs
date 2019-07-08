@@ -34,7 +34,9 @@ public class Work  extends AbstractEntity{
 	
 	@Lob
 	@Column(nullable=true)
-	private byte[] assessmentSolution;
+	private byte[] solutionZipFile;
+	
+	private String solutionFileName;
 	
 	
 	@Column(columnDefinition = "boolean default false")

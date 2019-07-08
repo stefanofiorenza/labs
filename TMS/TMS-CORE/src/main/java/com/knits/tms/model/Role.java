@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,8 +20,8 @@ public class Role extends AbstractEntity{
 	@Setter
 	private String name;
 	
-	@ManyToMany(mappedBy="roles" ,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-	@Getter
+	@ManyToMany(fetch=FetchType.LAZY ,mappedBy="roles" ,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@Setter(value=AccessLevel.NONE)
 	private List<Employee> employees = new ArrayList<>();
 	
 

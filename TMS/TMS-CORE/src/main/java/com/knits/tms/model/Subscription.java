@@ -25,6 +25,7 @@ public class Subscription extends AbstractEntity {
 
 	@Column(columnDefinition = "boolean default false")
 	private boolean active;
+	
 	@Column(columnDefinition = "boolean default false")
 	private boolean authorized;	
 	
@@ -33,18 +34,15 @@ public class Subscription extends AbstractEntity {
 	private Date authorizationUpdateDate;
 	
 	@ManyToOne
-	@JoinColumn(name="employee_id")
-	@Getter
+	@JoinColumn(name="employee_id")	
 	private Employee employee;
 	
 	@ManyToOne
-	@JoinColumn(name="edition_id")
-	@Getter
+	@JoinColumn(name="edition_id")	
 	private Edition edition;
 	
 	@ManyToOne
-	@JoinColumn(name="authorized_by")
-	@Getter
+	@JoinColumn(name="authorized_by")	
 	private Employee authorizedBy;
 		
 

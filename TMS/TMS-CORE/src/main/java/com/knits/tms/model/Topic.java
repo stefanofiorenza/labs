@@ -6,22 +6,25 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Data
 public class Topic extends AbstractEntity{
 	
 	
-	@Getter
-	@Setter
 	@Column(unique=true)
 	private String name;
 	
-	@ManyToMany(mappedBy="topics" ,cascade = {CascadeType.PERSIST,CascadeType.MERGE })
-	@Getter
+	@ManyToMany(fetch=FetchType.LAZY ,mappedBy="topics" ,cascade = {CascadeType.PERSIST,CascadeType.MERGE })
+	@Setter(value=AccessLevel.NONE)
 	private List<Course> courses = new ArrayList<Course>();
 	
 

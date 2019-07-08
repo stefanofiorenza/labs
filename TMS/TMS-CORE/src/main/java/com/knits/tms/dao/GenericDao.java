@@ -101,9 +101,7 @@ public abstract class GenericDao<T extends AbstractEntity> {
 
 	protected void addFiltersToCriteria(CriteriaBuilder cb,CriteriaQuery cq, List<Predicate> filtersAsPredicates,String queryName) {
 		
-		if (filtersAsPredicates.size() == 0) {
-			throw new RuntimeException("no Filters for " + queryName + " query");
-		} else if (filtersAsPredicates.size() == 1) {
+		 if (filtersAsPredicates.size() == 1) {
 			cq.where(filtersAsPredicates.get(0));
 		} else {
 			Predicate[] predicatesArr = new Predicate[filtersAsPredicates.size()];

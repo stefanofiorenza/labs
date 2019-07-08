@@ -5,19 +5,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
 @MappedSuperclass
+@Data
 public class AbstractEntity implements Comparable<AbstractEntity>{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	@Getter
-	@Setter
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	

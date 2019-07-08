@@ -43,6 +43,13 @@ public class Employee  extends AbstractEntity {
 	@OneToMany( mappedBy="authorizedBy")
 	@Getter
 	private List<Subscription> authorizedSubscriptions = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinTable(name = "employee_team",
+    	joinColumns = @JoinColumn(name = "employee_id"),
+    		inverseJoinColumns = @JoinColumn(name = "team_id")
+	)
+	private Team team;
 
 }
 	

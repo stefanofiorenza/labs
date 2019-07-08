@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
@@ -14,9 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -25,15 +29,17 @@ import lombok.extern.slf4j.Slf4j;
 @Entity
 public class Lecture extends AbstractEntity {
 
-	private String title;
+	@Column(nullable=false)
+	private String title;	
+	
 	private String content;
 	
 	@ManyToOne
 	@JoinColumn(name="edition_id")
 	private Edition edition;
 
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="lecture")	
-	@Getter
+	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.PERSIST, mappedBy="lecture")	
+	@Setter(value=AccessLevel.NONE)
 	private List<Schedule> schedules = new ArrayList<>();
 	
 }
