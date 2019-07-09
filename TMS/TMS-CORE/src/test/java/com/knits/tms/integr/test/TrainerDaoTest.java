@@ -32,7 +32,8 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 	
 	@Before
 	public void init() {	
-				
+		
+		super.init();
 		 transactionTemplate.execute(new TransactionCallbackWithoutResult() {	
 			 
 			@Override
