@@ -1,4 +1,4 @@
-package com.knits.tms.dao;
+package com.knits.tms.integr.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,9 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
 import com.knits.tms.beans.CourseSearchDto;
 import com.knits.tms.config.GenericTransactionalTest;
+import com.knits.tms.dao.CourseDao;
+import com.knits.tms.dao.TagDao;
+import com.knits.tms.dao.TopicDao;
 import com.knits.tms.model.Course;
 import com.knits.tms.model.Tag;
 import com.knits.tms.model.Topic;
@@ -67,6 +70,7 @@ public class CourseDaoTest extends GenericTransactionalTest{
 				tagNames.add("title1.AMockTag0");
 				tagNames.add("title1.AMockTag1");
 				courseFilterByTitle.setTags(tagNames);
+				
 				List<Course> courses =courseDao.findCourseByFilters(courseFilterByTitle);				
 				Assert.assertEquals(1, courses.size());
 				logCourseData(courses.get(0));

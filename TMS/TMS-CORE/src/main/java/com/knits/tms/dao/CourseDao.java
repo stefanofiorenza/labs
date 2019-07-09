@@ -46,6 +46,7 @@ public class CourseDao extends GenericDao<Course>{
 	private List<Course> queryWithCriteriaQuery(CourseSearchDto courseSearchDto){
 		CriteriaBuilder cb =getCriteriaBuilder();
 		CriteriaQuery<Course> cqueryCourse =cb.createQuery(Course.class);// expected result
+		
 		Root<Course> courseTable= cqueryCourse.from(Course.class); // table to query
 		
 		cqueryCourse.select(courseTable).distinct(true);
@@ -113,10 +114,12 @@ public class CourseDao extends GenericDao<Course>{
 
 		if(courseSearchDto.getActive()!=null) {
 			whereClause.add(" c.active=:active");
+			paramaterMap.put("active", courseSearchDto.getActive());
 		}
 		
 		if(courseSearchDto.getPublished()!=null) {
 			whereClause.add(" c.published=:published");
+			paramaterMap.put("published", courseSearchDto.getPublished());
 		}
 				
 		queryAsSbuffer.append(" where " + org.apache.commons.lang3.StringUtils.join(whereClause, " and "));	

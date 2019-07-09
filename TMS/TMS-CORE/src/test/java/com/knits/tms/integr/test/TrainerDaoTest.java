@@ -1,4 +1,4 @@
-package com.knits.tms.dao;
+package com.knits.tms.integr.test;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.knits.tms.config.GenericTransactionalTest;
+import com.knits.tms.dao.TrainerDao;
 import com.knits.tms.config.AppConfigIntegrationTestEnv;
 import com.knits.tms.model.Trainer;
 
@@ -36,6 +37,7 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 			 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				
 				trainerDao.save(mockTrainer("12345"));
 	    		trainerDao.save(mockTrainer("123456"));
 	    		trainerDao.save(mockTrainer("1234567"));	    	
