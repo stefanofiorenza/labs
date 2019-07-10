@@ -138,6 +138,39 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		
 	}
 	
+	@Test
+	public void testListAll() {
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+			
+				List<Lecture> lectures = lectureDao.listAll();
+				int size = lectures.size();
+				
+				Lecture lecture = new Lecture();
+
+				lecture.setTitle("titleListAllTest");
+				lecture.setContent("contentListAllTest");
+
+				lectureDao.save(lecture);
+				
+				lectures =lectureDao.listAll();
+				Assert.assertEquals(size +1, lectures.size());
+				
+				Long id = 0L;
+				
+				for(Lecture lectur : lectures) {
+					Assert.assertTrue(lectur.getId()>id);
+					id = lectur.getId();
+					log.info(lectur.toString());
+				}
+				
+				
+			}
+		});
+		
+	}
+	
 	
 	Lecture mockLecture(String title,String content) {
 		Lecture lecture = new Lecture();
