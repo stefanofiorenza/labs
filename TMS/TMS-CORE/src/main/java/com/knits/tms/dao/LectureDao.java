@@ -40,20 +40,20 @@ public List<Lecture> findLectureByFilters(LectureDto lectureDto) {
 	
 	private List<Lecture> queryWithCriteriaQuery(LectureDto lectureDto){
 		CriteriaBuilder cb =getCriteriaBuilder();
-		CriteriaQuery<Lecture> cqueryCourse =cb.createQuery(Lecture.class);// expected result
+		CriteriaQuery<Lecture> cqueryLecture =cb.createQuery(Lecture.class);// expected result
 		
-		Root<Lecture> courseTable= cqueryCourse.from(Lecture.class); // table to query
+		Root<Lecture> lectureTable= cqueryLecture.from(Lecture.class); // table to query
 		
-		cqueryCourse.select(courseTable).distinct(true);
+		cqueryLecture.select(lectureTable).distinct(true);
 		
 		if(!StringUtils.isEmpty(lectureDto.getTitle())) {
-			Predicate filterByTitle=cb.equal(courseTable.get("title"), lectureDto.getTitle());			
-			cqueryCourse.where(filterByTitle);
+			Predicate filterByTitle=cb.equal(lectureTable.get("title"), lectureDto.getTitle());			
+			cqueryLecture.where(filterByTitle);
 		}
 		
 		if(!StringUtils.isEmpty(lectureDto.getContent())) {
-			Predicate filterByTitle=cb.equal(courseTable.get("content"), lectureDto.getContent());			
-			cqueryCourse.where(filterByTitle);
+			Predicate filterByContent=cb.equal(lectureTable.get("content"), lectureDto.getContent());			
+			cqueryLecture.where(filterByContent);
 		}
 //		
 //		if(courseSearchDto.getPublished()!=null) {
@@ -76,7 +76,7 @@ public List<Lecture> findLectureByFilters(LectureDto lectureDto) {
 //			cqueryCourse.where(filterByInTopicNames);
 //		}
 		
-		TypedQuery<Lecture> qrtCourses =compileCriteriaQuery(cqueryCourse);		 
+		TypedQuery<Lecture> qrtCourses =compileCriteriaQuery(cqueryLecture);		 
 		return qrtCourses.getResultList();		
 	}
 	
