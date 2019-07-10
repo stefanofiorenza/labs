@@ -27,7 +27,6 @@ public class LectureDao extends GenericDao<Lecture> {
 
 	@Override
 	protected Class<Lecture> getEntityClass() {
-		// TODO Auto-generated method stub
 		return Lecture.class;
 	}
 	
