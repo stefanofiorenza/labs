@@ -1,7 +1,9 @@
 package com.knits.tms.integr.test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -143,8 +145,14 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				
+				System.out.println("This is listalltest");
 			
 				List<Lecture> lectures = lectureDao.listAll();
+				
+				for(Lecture lectur : lectures) {
+					log.info("ListAllTest OLDLIST:" + lectur.toString());
+				}
 				int size = lectures.size();
 				
 				Lecture lecture = new Lecture();
@@ -162,8 +170,81 @@ public class LectureDaoTest extends GenericTransactionalTest {
 				for(Lecture lectur : lectures) {
 					Assert.assertTrue(lectur.getId()>id);
 					id = lectur.getId();
-					log.info(lectur.toString());
+					log.info("ListAllTest LIST:" + lectur.toString());
 				}
+				
+				
+			}
+		});
+		
+	}
+	
+	@Test
+	public void testGetById() {
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				
+				List<Lecture> lectures = lectureDao.listAll();
+				
+				Lecture lecture = lectures.get(0);
+				Long id = lecture.getId();
+				
+				Lecture lectureTwo = lectureDao.findById(id);
+			
+				Assert.assertEquals(lecture.getTitle(), lectureTwo.getTitle());
+				Assert.assertEquals(lecture.getContent(),lectureTwo.getContent());
+			
+		}
+	});
+	
+}
+	
+	@Test
+	public void testFindByIds() {
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				
+				List<Lecture> lectures = lectureDao.listAll();
+				
+				Lecture lecture = lectures.get(0);
+				Long id = lecture.getId();
+				
+				Lecture lectureTwo = lectures.get(1);
+				Long id2 = lectureTwo.getId();
+				
+				Set<Long> hash_Set = new HashSet<Long>(); 
+		        hash_Set.add(id); 
+		        hash_Set.add(id2); 
+				
+				List <Lecture> lecturesByIds = lectureDao.findByIds(hash_Set);
+				
+				Assert.assertTrue(lecturesByIds.contains(lecture));
+				Assert.assertTrue(lecturesByIds.contains(lectureTwo));
+				
+				
+			}
+		});
+		
+	}
+	
+	@Test
+	public void testDeleteById() {
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+	
+				List<Lecture> lectures = lectureDao.listAll();
+				
+				Lecture lecture = lectures.get(0);
+				Long id = lecture.getId();
+				
+				Assert.assertNotNull(lectureDao.findById(id));
+				
+				lectureDao.delete(id);
+				
+				Assert.assertNull(lectureDao.findById(id));
 				
 				
 			}
