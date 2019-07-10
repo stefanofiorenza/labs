@@ -48,12 +48,43 @@ public class LectureDaoTest extends GenericTransactionalTest {
 	}
 	
 	@Test
-	public void testUpdate() {
+	public void testSave() {
 		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-				//lectureDao.save(mockLecture("title23","content23"));
+		LectureDto lectureFilterByTitle = new LectureDto();
+		lectureFilterByTitle.setTitle("titleSaveTest");
+		
+		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
+		Assert.assertEquals(0, lectures.size());
+		
+		Lecture lecture = new Lecture();
+
+		lecture.setTitle("titleSaveTest");
+		lecture.setContent("contentSaveTest");
+
+		lectureDao.save(lecture);
+	
+		lectures =lectureDao.findLectureByFilters(lectureFilterByTitle);
+		
+		Assert.assertEquals(1, lectures.size());
+		
+		lecture =lectures.get(0);
+		
+		Assert.assertEquals("titleSaveTest", lecture.getTitle());
+		Assert.assertEquals("contentSaveTest",lecture.getContent());
+			}
+		});
+		
+	}
+	
+	
+	@Test
+	public void testUpdate() {
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
 		LectureDto lectureFilterByTitle = new LectureDto();
 		lectureFilterByTitle.setTitle("title1");
@@ -77,6 +108,31 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		
 		Assert.assertEquals("testTitle", lecture.getTitle());
 		Assert.assertEquals("testContent",lecture.getContent());
+			}
+		});
+		
+	}
+	
+	@Test
+	public void testDelete() {
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				
+				LectureDto lectureFilterByTitle = new LectureDto();
+				lectureFilterByTitle.setTitle("title1");
+				
+				List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
+				Assert.assertEquals(1, lectures.size());
+				
+				Lecture lecture =lectures.get(0);	
+
+				lectureDao.delete(lecture);
+				
+				lectures =lectureDao.findLectureByFilters(lectureFilterByTitle);
+				Assert.assertEquals(0, lectures.size());
+				
+				
 			}
 		});
 		
