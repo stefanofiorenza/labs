@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class LectureDto {
+public class LectureSearchDto {
 	private String title;
 	private String content;
 	

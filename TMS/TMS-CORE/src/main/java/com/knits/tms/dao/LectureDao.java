@@ -16,7 +16,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.knits.tms.beans.CourseSearchDto;
-import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.model.Course;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Tag;
@@ -30,14 +30,14 @@ public class LectureDao extends GenericDao<Lecture> {
 		return Lecture.class;
 	}
 	
-public List<Lecture> findLectureByFilters(LectureDto lectureDto) {
+public List<Lecture> findLectureByFilters(LectureSearchDto lectureDto) {
 		
 		//return queryWithJpql(courseSearchDto);
 		return queryWithCriteriaQuery(lectureDto);					
 	}
 	
 	
-	private List<Lecture> queryWithCriteriaQuery(LectureDto lectureDto){
+	private List<Lecture> queryWithCriteriaQuery(LectureSearchDto lectureDto){
 		CriteriaBuilder cb =getCriteriaBuilder();
 		CriteriaQuery<Lecture> cqueryLecture =cb.createQuery(Lecture.class);// expected result
 		
