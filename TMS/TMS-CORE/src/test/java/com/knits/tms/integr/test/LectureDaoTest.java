@@ -1,6 +1,5 @@
 package com.knits.tms.integr.test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,18 +13,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
-import com.knits.tms.beans.CourseSearchDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.config.GenericTransactionalTest;
-import com.knits.tms.dao.CourseDao;
 import com.knits.tms.dao.GenericDao;
 import com.knits.tms.dao.LectureDao;
-import com.knits.tms.dao.TagDao;
-import com.knits.tms.dao.TopicDao;
-import com.knits.tms.model.Course;
 import com.knits.tms.model.Lecture;
-import com.knits.tms.model.Tag;
-import com.knits.tms.model.Topic;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -145,8 +137,6 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				
-				System.out.println("This is listalltest");
 			
 				List<Lecture> lectures = lectureDao.listAll();
 				

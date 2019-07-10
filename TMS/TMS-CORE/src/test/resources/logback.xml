@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<property name="logDir" value="C:/logs/spring/" />
+	<property name="logDir" value="C:/logs/tms/" />
 	 
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -15,9 +15,9 @@
     </appender>
     
       <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${logDir}/Spring-430.log</File>
+        <File>${logDir}/TMS-test.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logDir}/Spring-430.%d{yyyy-MM-dd}.log</FileNamePattern> 
+            <FileNamePattern>${logDir}/TMS-test.%d{yyyy-MM-dd}.log</FileNamePattern> 
             <maxHistory>5</maxHistory>            
         </rollingPolicy>
  
@@ -30,18 +30,21 @@
 
   	<logger name="com.knits" additivity="false">
 			<level value="INFO" />
+			<appender-ref ref="dailyRollingFileAppender" />
 			<appender-ref ref="consoleAppender" />
 	</logger>
 	
 	
-  	<logger name="org.hibernate" additivity="false">
-			<level value="INFO" />
-			<appender-ref ref="consoleAppender" />
-	</logger>
+  	
 	
 	
     <!-- 
 
+<logger name="org.hibernate" additivity="false">
+			<level value="INFO" />
+			<appender-ref ref="consoleAppender" />
+	</logger>
+	
 	<logger name="org.springframework" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="dailyRollingFileAppender"/>
