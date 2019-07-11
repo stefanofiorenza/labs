@@ -29,7 +29,7 @@ public class Employee  extends AbstractEntity {
 	private boolean teamLead;
 	
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@ManyToMany()
 	@JoinTable(name = "employee_role",
 	    joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "role_id")
 	)

@@ -1,25 +1,17 @@
 package com.knits.tms.integr.test;
 
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
-import com.knits.tms.beans.LectureDto;
-import com.knits.tms.beans.RoleDto;
-import com.knits.tms.config.AppConfig;
 import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.RoleDao;
-import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Role;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,7 +42,13 @@ public class RoleDaoTest extends GenericTransactionalTest {
     {
         Role roleTest = mockRole("random");
         
-        roleDao.save(roleTest);
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				 roleDao.save(roleTest);
+			}
+    	});		
+       
         
         //Role role = roleDao.findByName("roleTestName");
         
@@ -74,8 +72,8 @@ public class RoleDaoTest extends GenericTransactionalTest {
 	public void testUpdate() {
 		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
 			
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus status) {
+		@Override
+		protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
 		
 		Role role = roleDao.findByName("Admin");
@@ -86,12 +84,10 @@ public class RoleDaoTest extends GenericTransactionalTest {
 		roleDao.update(role);
 		Assert.assertEquals("test", role.getName());
 				
-			}
+		}
 		});
 		
 	}
-	
-	
 	
 	private Role mockRole (String name) {
 		
