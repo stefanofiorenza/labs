@@ -3,6 +3,7 @@ package com.knits.tms.integr.test;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.RoleDao;
 import com.knits.tms.model.Role;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RoleDaoTest extends GenericTransactionalTest {
 	

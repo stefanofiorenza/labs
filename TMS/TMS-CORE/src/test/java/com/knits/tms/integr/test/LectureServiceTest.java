@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
+import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.LectureDao;
@@ -45,7 +46,7 @@ public void testSave() {
 		@Override
 		protected void doInTransactionWithoutResult(TransactionStatus status) {
 			
-			Lecture lecture = new Lecture();
+			LectureDto lecture = new LectureDto();
 			lecture.setTitle("Hoihe");
 			lecture.setContent("Heuheu");
 			
@@ -62,10 +63,10 @@ public void testSave() {
 			
 			Assert.assertEquals(1, lectures.size());
 			
-			lecture = lectures.get(0);
+			Lecture lecturemodel = lectures.get(0);
 			
-			Assert.assertEquals("Hoihe", lecture.getTitle());
-			Assert.assertEquals("Heuheu",lecture.getContent());
+			Assert.assertEquals("Hoihe", lecturemodel.getTitle());
+			Assert.assertEquals("Heuheu",lecturemodel.getContent());
 			
 		}
 	});

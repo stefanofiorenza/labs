@@ -15,6 +15,7 @@
         <hibernate.version>5.4.2.Final</hibernate.version>  
         <hikari.version>3.2.0</hikari.version>
         
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <hsqldb.version>2.4.0</hsqldb.version>
         <mysql.driver>5.1.5</mysql.driver> 
         
@@ -41,7 +42,19 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-			
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency> 
+		
          <dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-core</artifactId>
@@ -62,6 +75,29 @@
 		   <version>${hibernate.version}</version>
 		</dependency>
 	
+		<!-- J2EE Web api -->
+	 	<dependency>
+		    <groupId>javax.servlet.jsp</groupId>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+		    <version>2.3.1</version>
+		    <scope>provided</scope>
+		</dependency>
+ 		
+ 		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+  
+ 	 	<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+            <scope>provided</scope>
+       </dependency>
+       
+       
 		<!-- DB libs -->	
 		<dependency>
 		    <groupId>mysql</groupId>

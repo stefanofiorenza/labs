@@ -5,24 +5,18 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import com.knits.tms.beans.CourseSearchDto;
 import com.knits.tms.beans.LectureSearchDto;
-import com.knits.tms.model.Course;
 import com.knits.tms.model.Lecture;
-import com.knits.tms.model.Tag;
-import com.knits.tms.model.Topic;
 
 @Repository
+@Transactional
 public class LectureDao extends GenericDao<Lecture> {
 
 	@Override
