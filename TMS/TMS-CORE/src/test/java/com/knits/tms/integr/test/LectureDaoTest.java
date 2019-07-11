@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
-import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.GenericDao;
 import com.knits.tms.dao.LectureDao;
@@ -47,7 +47,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-		LectureDto lectureFilterByTitle = new LectureDto();
+		LectureSearchDto lectureFilterByTitle = new LectureSearchDto();
 		lectureFilterByTitle.setTitle("titleSaveTest");
 		
 		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
@@ -80,7 +80,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-		LectureDto lectureFilterByTitle = new LectureDto();
+		LectureSearchDto lectureFilterByTitle = new LectureSearchDto();
 		lectureFilterByTitle.setTitle("title1");
 		
 		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
@@ -113,7 +113,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-				LectureDto lectureFilterByTitle = new LectureDto();
+				LectureSearchDto lectureFilterByTitle = new LectureSearchDto();
 				lectureFilterByTitle.setTitle("title1");
 				
 				List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
