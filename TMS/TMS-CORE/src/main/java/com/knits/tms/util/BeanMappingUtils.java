@@ -24,11 +24,18 @@ public class BeanMappingUtils {
 	}
 	
 	
-	public static Lecture dto2Model(LectureDto dto ) {		
+	public static Lecture dto2Model(LectureDto dto) {		
 		Lecture lecture = new Lecture();
 		lecture.setTitle(dto.getTitle());
 		lecture.setContent(dto.getContent());
 		return lecture;
+	}
+	
+	public static LectureDto model2Dto(Lecture model) {		
+		LectureDto dto = new LectureDto();
+		dto.setTitle(model.getTitle());
+		dto.setContent(model.getContent());
+		return dto;
 	}
 	
 }

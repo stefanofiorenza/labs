@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.knits.tms.service,com.knits.tms.dao")
+@ComponentScan({"com.knits.tms.service,com.knits.tms.dao","com.knits.tms.service", "com.knits.tms.util"})
 @PropertySource("classpath:database-int-test.properties")
 public class AppConfigIntegrationTestEnv {
 
