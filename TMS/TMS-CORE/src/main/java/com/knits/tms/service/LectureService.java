@@ -24,5 +24,9 @@ public class LectureService {
 		Lecture lecture = beanMappingUtils.dto2Model(lectureDto);
 		lectureDao.save(lecture);
 	}
+	
+	public void save(Lecture lecture) {
+		lectureDao.save(lecture);
+	}
 
 }
