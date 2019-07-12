@@ -24,7 +24,7 @@ import com.knits.tms.model.AbstractEntity;
 public abstract class GenericDao<T extends AbstractEntity> {
 	
 	@PersistenceContext
-	protected EntityManager entityManager;
+	private EntityManager entityManager;
 	
 	
 	protected abstract Class<T> getEntityClass();
