@@ -22,7 +22,7 @@ import com.knits.tms.config.AppConfigIntegrationTestEnv;
 import com.knits.tms.model.Trainer;
 
 
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TrainerDaoTest extends GenericTransactionalTest{
 		

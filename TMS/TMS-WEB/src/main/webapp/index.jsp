@@ -9,5 +9,6 @@
 <body>
 <a href="form/lecture.htm">Add a new lecture</a>
 <a href="form/lecturesearch.htm">Search for a lecture</a>
+<a href="form/employee.htm">Register</a>
 </body>
 </html>
