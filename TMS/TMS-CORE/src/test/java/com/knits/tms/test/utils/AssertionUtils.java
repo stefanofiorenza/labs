@@ -23,9 +23,14 @@ public class AssertionUtils {
 	
 	public static void assertDto2ModelMapping(LectureDto lectureDto, Lecture lecture) {
 		
-		Assert.assertTrue(lectureDto.getTitle().equals(lecture.getTitle()));
-		
+		Assert.assertTrue(lectureDto.getTitle().equals(lecture.getTitle()));		
 		Assert.assertTrue(lectureDto.getContent().equals(lecture.getContent()));
-
 	}
+
+	public static void assertModel2Dto(Lecture lecture, LectureDto lectureDto) {		
+		Assert.assertTrue(lecture.getTitle().equals(lectureDto.getTitle()));
+		Assert.assertTrue(lecture.getContent().equals(lectureDto.getContent()));
+	}
+	
+	
 }

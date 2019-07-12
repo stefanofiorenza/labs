@@ -31,13 +31,13 @@ public class LectureService {
 	
 	public List<LectureDto> findLectureByFilters(LectureSearchDto lectureDto){
 		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureDto);
-		List<LectureDto> lecturedtos = new ArrayList<LectureDto>();
+		List<LectureDto> lectureDtos = new ArrayList<LectureDto>();
 		
 		for(Lecture lecture : lectures) {
-			lecturedtos.add(beanMappingUtils.model2Dto(lecture));
+			lectureDtos.add(beanMappingUtils.model2Dto(lecture));
 		}
 		
-		return lecturedtos;
+		return lectureDtos;
 	}
 
 }
