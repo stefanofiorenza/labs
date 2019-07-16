@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -25,6 +26,7 @@ import com.knits.tms.model.Topic;
 import lombok.extern.slf4j.Slf4j;
 
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @Slf4j
 public class CourseDaoTest extends GenericTransactionalTest{

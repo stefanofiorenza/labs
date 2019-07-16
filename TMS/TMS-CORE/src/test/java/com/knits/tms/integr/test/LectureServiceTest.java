@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import com.knits.tms.service.LectureService;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Ignore
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LectureServiceTest  extends GenericTransactionalTest {

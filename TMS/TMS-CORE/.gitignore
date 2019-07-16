@@ -3,3 +3,4 @@
 .classpath
 .settings/**
 /target/
+**/database-int-test.properties

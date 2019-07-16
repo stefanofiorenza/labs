@@ -27,7 +27,7 @@ public class EmployeeService {
 	public void saveEmployee(EmployeeDto employeeDto) {		
 		Employee employeeAsModel= BeanMappingUtils.dto2Model(employeeDto);
 		Role role =roleDao.findByName(TmsConsts.ROLE_USER);
-		employeeAsModel.getRoles().add(role);
+		employeeAsModel.getRoles().add(role);		
 		employeeDao.save(employeeAsModel);		
 	}
 }
