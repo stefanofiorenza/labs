@@ -10,6 +10,6 @@
 <a href="form/lecture.htm">Add a new lecture</a>
 <a href="form/lecturesearch.htm">Search for a lecture</a>
 <a href="form/employee.htm">Register</a>
-<a href="form/module.htm">Add a new module</a>
+<a href="module/create.htm">Add a new module</a>
 </body>
 </html>
