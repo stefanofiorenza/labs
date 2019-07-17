@@ -7,12 +7,10 @@
 <title>Welcome to TMS</title>
 </head>
 <body>
-
 <a href="lecture/create">Add a new lecture</a>
 <a href="lecture/prepareSearch">Search for a lecture</a>
 <a href="employee/create">Register</a>
 <a href="trainer/create">Add a new trainer</a>
-
 
 </body>
 </html>

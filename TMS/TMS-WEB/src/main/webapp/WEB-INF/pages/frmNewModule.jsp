@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var = "ModuleControllerUri" value = "${pageContext.request.contextPath}/form"/>
+<c:set var = "ModuleControllerUri" value = "${pageContext.request.contextPath}/module"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New module</title>
 </head>
@@ -14,7 +14,7 @@
 <span> ${msg}</span>
 
 <h3>New Module</h3>
-<sform:form method="POST" modelAttribute="ModuleDto" action="${ModuleControllerUri}/saveModule" >
+<sform:form method="POST" modelAttribute="ModuleDto" action="${ModuleControllerUri}/save" >
 		<table>
 			<tr>
 				<td>Title:</td>
