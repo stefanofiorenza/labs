@@ -3,8 +3,9 @@ package com.knits.tms.test.utils;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
-import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TopicDto;
+import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Role;
 import com.knits.tms.model.Topic;
@@ -75,5 +76,16 @@ public class MockUtils {
 		return moduleDto;
 
 	}	
+	
+	public static TrainerDto mockTrainerDto() {
+		TrainerDto trainerDto = new TrainerDto();
+		trainerDto.setFirstName("MockName");
+		trainerDto.setLastName("MockSurname");
+		trainerDto.setLastName("MockSurname");
+		trainerDto.setIdCode("MockIdCode");
+		trainerDto.setEmail("MockEmail");
+		return trainerDto;
+		
+	}
 	
 }

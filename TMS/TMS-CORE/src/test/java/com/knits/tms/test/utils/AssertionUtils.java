@@ -5,12 +5,18 @@ import org.junit.Assert;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TrainerDto;
+import com.knits.tms.model.Employee;
+import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Module;
+import com.knits.tms.model.Trainer;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
 import com.knits.tms.model.Topic;
 
+>>>>>>> a3d80e59367593dd3bdb753fab7cbcb9f8723eee
 
 public class AssertionUtils {
 
@@ -46,6 +52,12 @@ public class AssertionUtils {
 		Assert.assertTrue(module.getTitle().equals(moduleDto.getTitle()));
 		Assert.assertTrue(module.getProgramPdf().equals(moduleDto.getProgramPdf()));
 		
+	}
+	public static void assertDto2ModelMapping(TrainerDto trainerDto, Trainer trainer) {
+		Assert.assertTrue(trainer.getFirstName().equals(trainerDto.getFirstName()));
+		Assert.assertTrue(trainer.getLastName().equals(trainerDto.getLastName()));
+		Assert.assertTrue(trainer.getIdCode().equals(trainerDto.getIdCode()));
+		Assert.assertTrue(trainer.getEmail().equals(trainerDto.getEmail()));
 	}
 	
 	
