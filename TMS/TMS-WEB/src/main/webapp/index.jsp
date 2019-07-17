@@ -11,6 +11,7 @@
 <a href="lecture/prepareSearch">Search for a lecture</a>
 <a href="employee/create">Register</a>
 <a href="trainer/create">Add a new trainer</a>
+<a href="module/create">Add a new module</a>
 
 </body>
 </html>
