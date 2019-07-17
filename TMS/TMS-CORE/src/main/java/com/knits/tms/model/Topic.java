@@ -8,15 +8,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 @Entity
+@EqualsAndHashCode(callSuper=true)
 @Data
+@NamedQueries({
+	@NamedQuery(
+		name = "Topic.ByName", 
+		query = "from Topic where name = :name"			
+	)
+})
 public class Topic extends AbstractEntity{
 	
 	

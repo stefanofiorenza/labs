@@ -4,8 +4,10 @@ import org.junit.Assert;
 
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.TopicDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Topic;
 
 public class AssertionUtils {
 
@@ -19,6 +21,11 @@ public class AssertionUtils {
 		Assert.assertTrue(employeeDto.getUsername().equals(employee.getUsername()));
 		Assert.assertTrue(employeeDto.getPassword().equals(employee.getPassword()));
 		Assert.assertTrue(employeeDto.isTeamLead()==(employee.isTeamLead()));
+	}
+	
+	public static void assertDto2ModelMapping(TopicDto topicDto, Topic topic) {
+		
+		Assert.assertTrue(topicDto.getName().equals(topic.getName()));
 	}
 	
 	public static void assertDto2ModelMapping(LectureDto lectureDto, Lecture lecture) {

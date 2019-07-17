@@ -3,8 +3,10 @@ package com.knits.tms.test.utils;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
+import com.knits.tms.beans.TopicDto;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Role;
+import com.knits.tms.model.Topic;
 import com.knits.tms.util.TmsConsts;
 
 public class MockUtils {
@@ -26,6 +28,12 @@ public class MockUtils {
 		employeeDto.setPassword("PasswordTest");
 		employeeDto.setTeamLead(false);
 		return employeeDto;
+	}
+	
+	public static TopicDto mockTopicDto() {
+		TopicDto topicDto = new TopicDto();
+		topicDto.setName("TopicNameTest");
+		return topicDto;
 	}
 
 
@@ -49,5 +57,11 @@ public class MockUtils {
 		lecture.setTitle("Testing");
 		lecture.setContent("Testing");		
 		return lecture;
+	}
+	
+	public static Topic mockTopic() {
+		Topic topic = new Topic();
+		topic.setName("TopicNameTest");
+		return topic;
 	}	
 }
