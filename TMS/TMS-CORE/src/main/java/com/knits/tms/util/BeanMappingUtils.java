@@ -4,14 +4,14 @@ import org.springframework.stereotype.Component;
 
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
-import com.knits.tms.model.Trainer;
-import com.knits.tms.beans.ModuleDto;
-import com.knits.tms.model.Employee;
-import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
+import com.knits.tms.model.Topic;
+import com.knits.tms.model.Trainer;
 
 
 @Component
@@ -28,6 +28,12 @@ public class BeanMappingUtils {
 		employee.setPassword(dto.getPassword());
 		employee.setTeamLead(dto.isTeamLead());
 		return employee;
+	}
+	
+	public static Topic dto2Model(TopicDto dto) {		
+		Topic topic = new Topic();
+		topic.setName(dto.getName());
+		return topic;
 	}
 	
 	

@@ -10,6 +10,13 @@ import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
 import com.knits.tms.model.Trainer;
+import com.knits.tms.beans.TopicDto;
+import com.knits.tms.model.Employee;
+import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Module;
+import com.knits.tms.model.Topic;
+
+>>>>>>> a3d80e59367593dd3bdb753fab7cbcb9f8723eee
 
 public class AssertionUtils {
 
@@ -23,6 +30,11 @@ public class AssertionUtils {
 		Assert.assertTrue(employeeDto.getUsername().equals(employee.getUsername()));
 		Assert.assertTrue(employeeDto.getPassword().equals(employee.getPassword()));
 		Assert.assertTrue(employeeDto.isTeamLead()==(employee.isTeamLead()));
+	}
+	
+	public static void assertDto2ModelMapping(TopicDto topicDto, Topic topic) {
+		
+		Assert.assertTrue(topicDto.getName().equals(topic.getName()));
 	}
 	
 	public static void assertDto2ModelMapping(LectureDto lectureDto, Lecture lecture) {
