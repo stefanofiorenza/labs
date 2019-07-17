@@ -7,6 +7,26 @@
   </parent>
   <artifactId>TMS-WEB</artifactId>
   <packaging>war</packaging>
+  
+     <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
+        <version.jdk>1.8</version.jdk>
+      </properties>
+      
+     <build>	  		
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${version.jdk}</source>
+					<target>${version.jdk}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>TMS</finalName>
+	</build>
+	
+	
   <dependencies>
   	<dependency>
   		<groupId>com.knits</groupId>
