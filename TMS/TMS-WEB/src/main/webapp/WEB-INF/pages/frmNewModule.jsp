@@ -5,29 +5,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var = "LectureControllerUri" value = "${pageContext.request.contextPath}/lecture"/>
+<c:set var = "ModuleControllerUri" value = "${pageContext.request.contextPath}/module"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New lecture</title>
+<title>New module</title>
 </head>
 <body>
 
 <span> ${msg}</span>
 
-<h3>Insert a new lecture</h3>
-<sform:form method="POST" modelAttribute="LectureDto" action="${LectureControllerUri}/save" >
+<h3>New Module</h3>
+<sform:form method="POST" modelAttribute="ModuleDto" action="${ModuleControllerUri}/save" >
 		<table>
 			<tr>
 				<td>Title:</td>
 				<td><sform:input path="title" /></td>				
 			</tr>
 			<tr>
-				<td>Content:</td>
-				<td><sform:input path="content" /></td>				
+                <td>Program pdf:</td>
+                <td><input type="file" name="fileUpload" /></td>
+            </tr>
+		
+			
+			
+			<tr>
+			<td><input type="reset" value="Cancel"/></td>
+					<td><input type="submit" value="Submit"/></td>
 			</tr>
-		<tr>
-		<td><input type="reset" value="Cancel"/></td>
-				<td><input type="submit" value="Submit"/></td>
-	</tr>
 </table>
 </sform:form>
 

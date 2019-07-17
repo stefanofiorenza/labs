@@ -4,10 +4,15 @@ import org.springframework.stereotype.Component;
 
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.ModuleDto;
 import com.knits.tms.beans.TopicDto;
+import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Module;
 import com.knits.tms.model.Topic;
+import com.knits.tms.model.Trainer;
+
 
 @Component
 public class BeanMappingUtils {
@@ -43,6 +48,38 @@ public class BeanMappingUtils {
 		LectureDto dto = new LectureDto();
 		dto.setTitle(model.getTitle());
 		dto.setContent(model.getContent());
+		return dto;
+	}
+	
+	public static Trainer dto2Model(TrainerDto dto) {		
+		Trainer trainer = new Trainer();
+		trainer.setFirstName(dto.getFirstName());
+		trainer.setLastName(dto.getLastName());
+		trainer.setIdCode(dto.getIdCode());
+		trainer.setEmail(dto.getEmail());
+		return trainer;
+	}
+	
+	public static TrainerDto model2Dto(Trainer model) {		
+		TrainerDto dto = new TrainerDto();
+		dto.setFirstName(model.getFirstName());
+		dto.setLastName(model.getLastName());
+		dto.setIdCode(model.getIdCode());
+		dto.setEmail(model.getEmail());
+		return dto;
+	}
+
+	public static Module dto2Model(ModuleDto dto) {		
+		Module module = new Module();
+		module.setTitle(dto.getTitle());
+		module.setProgramPdf(dto.getProgramPdf());;
+		return module;
+	}
+	
+	public static ModuleDto model2Dto(Module model) {		
+		ModuleDto dto = new ModuleDto();
+		dto.setTitle(model.getTitle());
+		dto.setProgramPdf(model.getProgramPdf());;
 		return dto;
 	}
 	

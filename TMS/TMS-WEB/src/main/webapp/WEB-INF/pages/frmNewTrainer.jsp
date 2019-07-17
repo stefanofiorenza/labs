@@ -5,24 +5,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var = "LectureControllerUri" value = "${pageContext.request.contextPath}/lecture"/>
+<c:set var = "TrainerControllerUri" value = "${pageContext.request.contextPath}/trainer"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New lecture</title>
+<title>New Trainer</title>
 </head>
 <body>
 
 <span> ${msg}</span>
 
-<h3>Insert a new lecture</h3>
-<sform:form method="POST" modelAttribute="LectureDto" action="${LectureControllerUri}/save" >
+<h3>Add a new trainer</h3>
+<sform:form method="POST" modelAttribute="TrainerDto" action="${TrainerControllerUri}/save" >
 		<table>
 			<tr>
-				<td>Title:</td>
-				<td><sform:input path="title" /></td>				
+				<td>First Name:</td>
+				<td><sform:input path="firstName" /></td>				
 			</tr>
 			<tr>
-				<td>Content:</td>
-				<td><sform:input path="content" /></td>				
+				<td>Last Name:</td>
+				<td><sform:input path="lastName" /></td>				
+			</tr>
+			<tr>
+				<td>ID code:</td>
+				<td><sform:input path="idCode" /></td>				
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><sform:input path="email" /></td>				
 			</tr>
 		<tr>
 		<td><input type="reset" value="Cancel"/></td>

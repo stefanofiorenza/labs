@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import com.knits.tms.model.Trainer;
 
 @Repository
+@Transactional
 public class TrainerDao extends GenericDao<Trainer>{
 
 		

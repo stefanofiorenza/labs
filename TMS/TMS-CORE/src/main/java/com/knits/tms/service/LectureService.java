@@ -29,6 +29,7 @@ public class LectureService {
 		lectureDao.save(lecture);
 	}
 	
+
 	public List<LectureDto> findLectureByFilters(LectureSearchDto lectureDto){
 		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureDto);
 		List<LectureDto> lectureDtos = new ArrayList<LectureDto>();

@@ -4,6 +4,7 @@ import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.beans.TopicDto;
+import com.knits.tms.beans.ModuleDto;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Role;
 import com.knits.tms.model.Topic;
@@ -58,10 +59,21 @@ public class MockUtils {
 		lecture.setContent("Testing");		
 		return lecture;
 	}
+
 	
 	public static Topic mockTopic() {
 		Topic topic = new Topic();
 		topic.setName("TopicNameTest");
 		return topic;
+	}
+
+	public static ModuleDto mockModuleDto() {
+		ModuleDto moduleDto = new ModuleDto();
+		moduleDto.setTitle("ModuleTitleTest");
+		byte[] program = new byte[1];
+		moduleDto.setProgramPdf(program);;
+		return moduleDto;
+
 	}	
+	
 }

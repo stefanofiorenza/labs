@@ -22,7 +22,7 @@ import com.knits.tms.util.BeanMappingUtils;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/form")
+@RequestMapping("/lecture")
 @Slf4j
 public class LectureController {
 	
@@ -30,7 +30,7 @@ public class LectureController {
 	private LectureService lectureService;
 	
 	
-	 @RequestMapping(value = "/lecture", method = RequestMethod.GET)
+	 @RequestMapping(value = "/create", method = RequestMethod.GET)
 	  public ModelAndView newLecture(HttpServletRequest request, HttpServletResponse response) {
 		    ModelAndView mav = new ModelAndView("frmNewLecture");
 		    mav.addObject("LectureDto", new LectureDto());
@@ -50,7 +50,7 @@ public class LectureController {
 
 	  }
 
-		 @RequestMapping(value = "/lecturesearch", method = RequestMethod.GET)
+		 @RequestMapping(value = "/prepareSearch", method = RequestMethod.GET)
 		  public ModelAndView lectureSearch(HttpServletRequest request, HttpServletResponse response) {
 			    ModelAndView mav = new ModelAndView("frmSearchLectures");
 			    mav.addObject("LectureSearchDto", new LectureSearchDto());
@@ -58,7 +58,7 @@ public class LectureController {
 
 		  }
 		 
-		  @RequestMapping(value = "/search", method = RequestMethod.POST)
+		  @RequestMapping(value = "/doSearch", method = RequestMethod.POST)
 		  public ModelAndView lectureSearchProcess(HttpServletRequest request, HttpServletResponse response,
 		  @ModelAttribute("lectures") LectureSearchDto lecture) {
 			  log.info("Reveived lectures filters: "+lecture.toString());
