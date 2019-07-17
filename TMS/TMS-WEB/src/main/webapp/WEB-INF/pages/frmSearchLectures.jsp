@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var = "LectureControllerUri" value = "${pageContext.request.contextPath}/form"/>
+<c:set var = "LectureControllerUri" value = "${pageContext.request.contextPath}/lecture"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search lecture</title>
 </head>

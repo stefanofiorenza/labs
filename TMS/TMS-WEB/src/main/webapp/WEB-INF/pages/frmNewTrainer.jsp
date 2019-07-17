@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var = "TrainerControllerUri" value = "${pageContext.request.contextPath}/form"/>
+<c:set var = "TrainerControllerUri" value = "${pageContext.request.contextPath}/trainer"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New Trainer</title>
 </head>
