@@ -4,8 +4,10 @@ import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Role;
+import com.knits.tms.model.Trainer;
 import com.knits.tms.util.TmsConsts;
 
 public class MockUtils {
@@ -60,5 +62,16 @@ public class MockUtils {
 		moduleDto.setProgramPdf(program);;
 		return moduleDto;
 	}	
+	
+	public static TrainerDto mockTrainerDto() {
+		TrainerDto trainerDto = new TrainerDto();
+		trainerDto.setFirstName("MockName");
+		trainerDto.setLastName("MockSurname");
+		trainerDto.setLastName("MockSurname");
+		trainerDto.setIdCode("MockIdCode");
+		trainerDto.setEmail("MockEmail");
+		return trainerDto;
+		
+	}
 	
 }

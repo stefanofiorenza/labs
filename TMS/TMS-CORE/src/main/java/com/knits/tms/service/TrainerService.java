@@ -23,16 +23,5 @@ public class TrainerService {
 		Trainer trainer = beanMappingUtils.dto2Model(trainerDto);
 		trainerDao.save(trainer);
 	}
-	
 
-//	public List<TrainerDto> findLectureByFilters(LectureSearchDto lectureDto){
-//		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureDto);
-//		List<LectureDto> lectureDtos = new ArrayList<LectureDto>();
-//		
-//		for(Lecture lecture : lectures) {
-//			lectureDtos.add(beanMappingUtils.model2Dto(lecture));
-//		}
-//		
-//		return lectureDtos;
-//	}
 }
