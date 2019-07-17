@@ -1,5 +1,6 @@
 package com.knits.tms.test.utils;
 
+import com.knits.tms.beans.CourseDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
@@ -74,7 +75,6 @@ public class MockUtils {
 		byte[] program = new byte[1];
 		moduleDto.setProgramPdf(program);;
 		return moduleDto;
-
 	}	
 	
 	public static TrainerDto mockTrainerDto() {
@@ -84,8 +84,16 @@ public class MockUtils {
 		trainerDto.setLastName("MockSurname");
 		trainerDto.setIdCode("MockIdCode");
 		trainerDto.setEmail("MockEmail");
-		return trainerDto;
-		
+		return trainerDto;		
+	}
+
+
+	public static CourseDto mockCourseDto() {
+		CourseDto courseDto = new CourseDto();
+		courseDto.setActive(false);
+		courseDto.setPublished(true);
+		courseDto.setTitle("ModuleTitleTest");		
+		return courseDto;
 	}
 	
 }

@@ -87,17 +87,17 @@ public class BeanMappingUtils {
 	
 	public static Course dto2Model(CourseDto dto) {		
 		Course course = new Course();
-		course.setActive(dto.isActive());
-		course.setPublished(dto.isPublished());
 		course.setTitle(dto.getTitle());
+		course.setActive(dto.isActive());
+		course.setPublished(dto.isPublished());		
 		return course;
 	}
 	
 	public static CourseDto model2Dto(Course model) {		
 		CourseDto dto = new CourseDto();
-		dto.setActive(model.isActive());
-		dto.setPublished(model.isPublished());
 		dto.setTitle(model.getTitle());
+		dto.setActive(model.isActive());
+		dto.setPublished(model.isPublished());		
 		return dto;
 	}
 	
