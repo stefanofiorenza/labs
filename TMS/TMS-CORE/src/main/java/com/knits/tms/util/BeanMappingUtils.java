@@ -4,8 +4,10 @@ import org.springframework.stereotype.Component;
 
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.ModuleDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Module;
 
 @Component
 public class BeanMappingUtils {
@@ -35,6 +37,20 @@ public class BeanMappingUtils {
 		LectureDto dto = new LectureDto();
 		dto.setTitle(model.getTitle());
 		dto.setContent(model.getContent());
+		return dto;
+	}
+	
+	public static Module dto2Model(ModuleDto dto) {		
+		Module module = new Module();
+		module.setTitle(dto.getTitle());
+		module.setProgramPdf(dto.getProgramPdf());;
+		return module;
+	}
+	
+	public static ModuleDto model2Dto(Module model) {		
+		ModuleDto dto = new ModuleDto();
+		dto.setTitle(model.getTitle());
+		dto.setProgramPdf(model.getProgramPdf());;
 		return dto;
 	}
 	
