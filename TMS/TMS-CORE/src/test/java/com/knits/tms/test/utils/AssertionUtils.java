@@ -4,8 +4,10 @@ import org.junit.Assert;
 
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.ModuleDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Module;
 
 public class AssertionUtils {
 
@@ -30,6 +32,12 @@ public class AssertionUtils {
 	public static void assertModel2Dto(Lecture lecture, LectureDto lectureDto) {		
 		Assert.assertTrue(lecture.getTitle().equals(lectureDto.getTitle()));
 		Assert.assertTrue(lecture.getContent().equals(lectureDto.getContent()));
+	}
+
+	public static void assertDto2ModelMapping(ModuleDto moduleDto, Module module) {
+		Assert.assertTrue(module.getTitle().equals(moduleDto.getTitle()));
+		Assert.assertTrue(module.getProgramPdf().equals(moduleDto.getProgramPdf()));
+		
 	}
 	
 	
