@@ -27,7 +27,7 @@ public class EmployeeController {
 	
 	 @RequestMapping(value = "/create", method = RequestMethod.GET)
 	  public ModelAndView newEmployee(HttpServletRequest request, HttpServletResponse response) {
-		    ModelAndView mav = new ModelAndView("frmRegister");
+		    ModelAndView mav = new ModelAndView("frmNewEmployee");
 		    mav.addObject("EmployeeDto", new EmployeeDto());
 		    return mav;
 
@@ -38,7 +38,7 @@ public class EmployeeController {
 	  @ModelAttribute("EmployeeDto") EmployeeDto employee) {
 		  log.info("Reveived lecture: "+employee.toString());
 		  employeeService.saveEmployee(employee);
-		  ModelAndView mav = new ModelAndView("frmRegister");
+		  ModelAndView mav = new ModelAndView("frmNewEmployee");
 		  mav.addObject("msg", "Employee Saved");
 		  mav.addObject("EmployeeDto",employee);
 		  return mav;

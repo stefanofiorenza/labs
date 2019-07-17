@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var = "EmployeeControllerUri" value = "${pageContext.request.contextPath}/form"/>
+<c:set var = "EmployeeControllerUri" value = "${pageContext.request.contextPath}/employee"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New employee</title>
 </head>
@@ -14,7 +14,7 @@
 <span> ${msg}</span>
 
 <h3>Register</h3>
-<sform:form method="POST" modelAttribute="EmployeeDto" action="${EmployeeControllerUri}/saveEmployee" >
+<sform:form method="POST" modelAttribute="EmployeeDto" action="${EmployeeControllerUri}/save" >
 		<table>
 			<tr>
 				<td>First name:</td>
