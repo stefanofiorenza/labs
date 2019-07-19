@@ -14,8 +14,8 @@
    
    <span> ${msg}</span>
    
-   <h3>Search for a trainer</h3>
-<sform:form method="POST" modelAttribute="TrainerSearchDto" action="${TrainerControllerUri}/search" >
+   <h3>Edit a trainer</h3>
+<sform:form method="POST" modelAttribute="TrainerSearchDto" action="${TrainerControllerUri}/edit" >
 		<table>
 			<tr>
 				<td>First Name:</td>
@@ -35,33 +35,12 @@
 			</tr>
 		<tr>
 		<td><input type="reset" value="Cancel"/></td>
-				<td><input type="submit" value="Submit"/></td>
+				<td><input type="submit" value="Edit"/></td>
 	</tr>
 </table>
  </sform:form>  
  <br />
- <h3>Search results:</h3>
- <table border="1" width="90%"> 
-    <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Email</th>
-        <th>IdCode</th>
-         <th>Edit</th>
-         <th>Delete</th>
-    </tr>
- <c:forEach items="${trainers}" var="trainers">
-    <tr>      
-        <td>${trainers.firstName}</td>
-        <td>${trainers.lastName}</td>
-        <td>${trainers.email}</td>
-        <td>${trainers.idCode}</td>
-        <td><a href="trainer/edit?id=${trainers.getId()}">Edit</a></td>  
-        <td><a href="trainer/delete?id=${trainers.getId()}">Delete</a></td>
-    </tr>
-</c:forEach>
-</table>
-<br />
+
 <a href="${pageContext.request.contextPath}">Back To Index</a><br/>	
    </body>
 </html>

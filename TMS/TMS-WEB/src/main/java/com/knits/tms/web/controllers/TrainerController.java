@@ -60,11 +60,21 @@ public class TrainerController {
 	  public ModelAndView trainerSearchProcess(HttpServletRequest request, HttpServletResponse response,
 	  @ModelAttribute("trainers") TrainerSearchDto trainer) {
 		  List<TrainerDto> trainersFound = trainerService.findTrainerByFilters(trainer);
+		  List<TrainerDto> trainersFoundByIdCode = trainerService.findTrainerByFilters(trainer);
 		  ModelAndView mav = new ModelAndView("frmSearchTrainer");
 		  mav.addObject("TrainerSearchDto", new TrainerSearchDto());
 		  mav.addObject("msg", "Trainer search submitted");
 		  mav.addObject("trainers",trainersFound);
 		  return mav;
+
+	  }
+	  
+	  
+	  @RequestMapping(value = "/edit", method = RequestMethod.GET)
+	  public ModelAndView trainEdit(HttpServletRequest request, HttpServletResponse response) {
+		    ModelAndView mav = new ModelAndView("frmEditTrainer");
+		    mav.addObject("TrainerDto", new TrainerDto());
+		    return mav;
 
 	  }
 

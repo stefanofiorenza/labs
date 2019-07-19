@@ -40,5 +40,10 @@ public class TrainerService {
 		
 		return trainerDtos;
 	}
+	
+	public void update(TrainerDto dto) {
+		Trainer trainer = beanMappingUtils.dto2Model(dto);
+		trainerDao.update(trainer);
+	}
 
 }

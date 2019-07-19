@@ -27,8 +27,8 @@ import lombok.Setter;
 	)
 })
 public class Trainer extends AbstractEntity{
-
 	
+	private Long id;
 	private String firstName;
 	private String lastName;
 	
