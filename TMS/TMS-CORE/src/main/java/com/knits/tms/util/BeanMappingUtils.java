@@ -9,6 +9,7 @@ import com.knits.tms.beans.EditionDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TagDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Course;
@@ -16,6 +17,7 @@ import com.knits.tms.model.Edition;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
+import com.knits.tms.model.Tag;
 import com.knits.tms.model.Topic;
 import com.knits.tms.model.Trainer;
 
@@ -122,6 +124,19 @@ public class BeanMappingUtils {
 		dto.setOpen(model.isOpen());
 		return dto;
 	}
+	
+	public static Tag dto2Model(TagDto dto) {		
+		Tag tag = new Tag();
+		tag.setName(dto.getName());
+		return tag;
+	}
+	
+	public static TagDto model2Dto(Tag model) {		
+		TagDto dto = new TagDto();
+		dto.setName(model.getName());
+		return dto;
+	}
+	
 	
 	
 }

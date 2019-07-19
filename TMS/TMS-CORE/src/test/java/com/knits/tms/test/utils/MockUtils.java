@@ -9,6 +9,7 @@ import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TagDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Lecture;
@@ -108,6 +109,12 @@ public class MockUtils {
 		editionDto.setDeadline("01-12-2019");
 		editionDto.setOpen(true);
 		return editionDto;
+	}
+
+	public static TagDto mockTagDto() {
+		TagDto tagDto = new TagDto();
+		tagDto.setName("TagNameTest");
+		return tagDto;
 	}
 	
 }
