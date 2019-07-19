@@ -29,6 +29,10 @@
 				<td>Email:</td>
 				<td><sform:input path="email" /></td>				
 			</tr>
+			<tr>
+				<td>IdCode:</td>
+				<td><sform:input path="idCode" /></td>				
+			</tr>
 		<tr>
 		<td><input type="reset" value="Cancel"/></td>
 				<td><input type="submit" value="Submit"/></td>
@@ -42,6 +46,7 @@
         <th>First name</th>
         <th>Last name</th>
         <th>Email</th>
+        <th>IdCode</th>
          <th>Edit</th>
     </tr>
  <c:forEach items="${trainers}" var="trainers">
@@ -49,6 +54,7 @@
         <td>${trainers.firstName}</td>
         <td>${trainers.lastName}</td>
         <td>${trainers.email}</td>
+        <td>${trainers.idCode}</td>
         <td><a href="trainer/edit">edit</a></td>
     </tr>
 </c:forEach>

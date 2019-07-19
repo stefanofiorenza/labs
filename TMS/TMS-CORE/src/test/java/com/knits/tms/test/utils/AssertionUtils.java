@@ -1,14 +1,26 @@
 package com.knits.tms.test.utils;
 
+import java.text.ParseException;
+
 import org.junit.Assert;
 
 import com.knits.tms.beans.CourseDto;
+import com.knits.tms.beans.EditionDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TagDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Course;
+import com.knits.tms.model.Edition;
+import com.knits.tms.model.Employee;
+import com.knits.tms.model.Lecture;
+import com.knits.tms.model.Module;
+import com.knits.tms.model.Tag;
+import com.knits.tms.model.Trainer;
+import com.knits.tms.util.TmsUtils;
+import com.knits.tms.beans.TopicDto;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
@@ -29,7 +41,6 @@ public class AssertionUtils {
 	}
 	
 	public static void assertDto2ModelMapping(TopicDto topicDto, Topic topic) {
-		
 		Assert.assertTrue(topicDto.getName().equals(topic.getName()));
 	}
 	
@@ -60,6 +71,18 @@ public class AssertionUtils {
 		Assert.assertTrue(course.getTitle().equals(courseDto.getTitle()));
 		Assert.assertTrue(course.isActive()==(courseDto.isActive()));
 		Assert.assertTrue(course.isPublished()==(courseDto.isPublished()));
+	}
+
+	public static void assertDto2ModelMapping(EditionDto editionDto, Edition edition) throws ParseException {
+		
+		Assert.assertTrue(edition.getStartDate().equals(TmsUtils.string2Date(editionDto.getStartDate())));
+		Assert.assertTrue(edition.getEndDate().equals(TmsUtils.string2Date(editionDto.getEndDate())));
+		Assert.assertTrue(edition.getDeadline().equals(TmsUtils.string2Date(editionDto.getDeadline())));
+		Assert.assertTrue(edition.isOpen()==(editionDto.isOpen()));		
+	}
+
+	public static void assertDto2ModelMapping(TagDto tagDto, Tag tag) {
+		Assert.assertTrue(tagDto.getName().equals(tag.getName()));
 	}
 	
 	

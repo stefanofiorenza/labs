@@ -14,8 +14,10 @@
 <p><a href="trainer/create">Add a new trainer</a></p>
 <p><a href="trainer/search">Search trainers</a></p>
 <p><a href="module/create">Add a new module</a></p>
-<p><a href="topic/create.htm">Add new topic</a></p>
-<a href="course/create.htm">Add new course</a>
+<p><a href="topic/create">Add new topic</a></p>
+<p><a href="course/create">Add new course</a></p>
+<p><a href="edition/create">Add new edition</a></p>
+<p><a href="tag/create">Add new tag</a></p>
 
 
 </body>
