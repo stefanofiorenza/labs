@@ -2,17 +2,18 @@ package com.knits.tms.test.utils;
 
 import org.junit.Assert;
 
+import com.knits.tms.beans.CourseDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.ModuleDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
+import com.knits.tms.model.Course;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
 import com.knits.tms.model.Topic;
 import com.knits.tms.model.Trainer;
-
 
 public class AssertionUtils {
 
@@ -45,14 +46,20 @@ public class AssertionUtils {
 
 	public static void assertDto2ModelMapping(ModuleDto moduleDto, Module module) {
 		Assert.assertTrue(module.getTitle().equals(moduleDto.getTitle()));
-		Assert.assertTrue(module.getProgramPdf().equals(moduleDto.getProgramPdf()));
-		
+		Assert.assertTrue(module.getProgramPdf().equals(moduleDto.getProgramPdf()));		
 	}
+	
 	public static void assertDto2ModelMapping(TrainerDto trainerDto, Trainer trainer) {
 		Assert.assertTrue(trainer.getFirstName().equals(trainerDto.getFirstName()));
 		Assert.assertTrue(trainer.getLastName().equals(trainerDto.getLastName()));
 		Assert.assertTrue(trainer.getIdCode().equals(trainerDto.getIdCode()));
 		Assert.assertTrue(trainer.getEmail().equals(trainerDto.getEmail()));
+	}
+	
+	public static void assertDto2ModelMapping(CourseDto courseDto, Course course) {
+		Assert.assertTrue(course.getTitle().equals(courseDto.getTitle()));
+		Assert.assertTrue(course.isActive()==(courseDto.isActive()));
+		Assert.assertTrue(course.isPublished()==(courseDto.isPublished()));
 	}
 	
 	

@@ -15,6 +15,8 @@
 <p><a href="trainer/search">Search trainers</a></p>
 <p><a href="module/create">Add a new module</a></p>
 <p><a href="topic/create.htm">Add new topic</a></p>
+<a href="course/create.htm">Add new course</a>
+
 
 </body>
 </html>

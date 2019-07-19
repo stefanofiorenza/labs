@@ -5,9 +5,10 @@ import lombok.Data;
 @Data
 public class CourseDto {
 	
+	private String title;
 	private boolean active;
 	private boolean published;
-	private String title;
+	
 	
 
 }
