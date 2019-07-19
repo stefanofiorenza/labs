@@ -1,5 +1,6 @@
 package com.knits.tms.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,24 @@ public class LectureService {
 		}
 		
 		return lectureDtos;
+	}
+	
+	public void update (LectureDto lectureDto) {
+		if((lectureDao.findById(lectureDto.getId()) != null)){
+		Lecture lecture = lectureDao.findById(lectureDto.getId());
+		lecture.setTitle(lectureDto.getTitle());
+		lecture.setContent(lectureDto.getContent());
+		lectureDao.update(lecture);
+		}
+		else {
+			
+		}
+	}
+	
+	public LectureDto findById(Long id) {
+		Lecture lecture = lectureDao.findById(id);
+		LectureDto dto = beanMappingUtils.model2Dto(lecture);
+		return dto;
 	}
 
 }

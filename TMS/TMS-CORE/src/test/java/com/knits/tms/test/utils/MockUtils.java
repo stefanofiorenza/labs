@@ -42,6 +42,7 @@ public class MockUtils {
 
 	public static LectureDto mockLectureDto() {
 		LectureDto lectureDto = new LectureDto();
+		lectureDto.setId(111L);
 		lectureDto.setTitle("This Is A Test Title");
 		lectureDto.setContent("This Is A Test Content");
 		return lectureDto;

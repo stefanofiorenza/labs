@@ -43,6 +43,7 @@ public class BeanMappingUtils {
 		Lecture lecture = new Lecture();
 		lecture.setTitle(dto.getTitle());
 		lecture.setContent(dto.getContent());
+		lecture.setId(dto.getId());
 		return lecture;
 	}
 	
@@ -50,6 +51,7 @@ public class BeanMappingUtils {
 		LectureDto dto = new LectureDto();
 		dto.setTitle(model.getTitle());
 		dto.setContent(model.getContent());
+		dto.setId(model.getId());
 		return dto;
 	}
 	

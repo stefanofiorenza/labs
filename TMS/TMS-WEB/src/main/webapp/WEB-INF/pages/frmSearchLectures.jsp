@@ -29,22 +29,30 @@
 		<td><input type="reset" value="Cancel"/></td>
 				<td><input type="submit" value="Submit"/></td>
 	</tr>
-</table>
+	
+
  </sform:form>  
  <br />
- <h3>Search results:</h3>
- <table>
+
+
+        <table border="1" cellpadding="5">
+         <caption><h2>List of lectures searched:</h2></caption>
     <tr>
         <th>Title</th>
         <th>Content</th>
+        <th>Edit or Delete</th>
     </tr>
- <c:forEach items="${lectures}" var="lectures">
+ <c:forEach items="${lectures}" var="lecture">
     <tr>      
-        <td>${lectures.title}</td>
-        <td>${lectures.content}</td>
+        <td>${lecture.title}</td>
+        <td>${lecture.content}</td>
+        <td><a href="edit/<c:out value='${lecture.id}' />">Edit</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+             <a href="delete/<c:out value='${lecture.id}' />">Delete</a>  </td>
     </tr>
 </c:forEach>
 </table>
+  
 <br />
 <a href="${pageContext.request.contextPath}"> Back To Index</a><br/>	
 
