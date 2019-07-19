@@ -1,17 +1,23 @@
 package com.knits.tms.util;
 
+import java.text.ParseException;
+
 import org.springframework.stereotype.Component;
 
 import com.knits.tms.beans.CourseDto;
+import com.knits.tms.beans.EditionDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TagDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Course;
+import com.knits.tms.model.Edition;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
+import com.knits.tms.model.Tag;
 import com.knits.tms.model.Topic;
 import com.knits.tms.model.Trainer;
 
@@ -43,6 +49,7 @@ public class BeanMappingUtils {
 		Lecture lecture = new Lecture();
 		lecture.setTitle(dto.getTitle());
 		lecture.setContent(dto.getContent());
+		lecture.setId(dto.getId());
 		return lecture;
 	}
 	
@@ -50,6 +57,7 @@ public class BeanMappingUtils {
 		LectureDto dto = new LectureDto();
 		dto.setTitle(model.getTitle());
 		dto.setContent(model.getContent());
+		dto.setId(model.getId());
 		return dto;
 	}
 	
@@ -100,6 +108,37 @@ public class BeanMappingUtils {
 		dto.setPublished(model.isPublished());		
 		return dto;
 	}
+
+	public static Edition dto2Model(EditionDto dto) throws ParseException {		
+		Edition edition = new Edition();
+		edition.setStartDate(TmsUtils.string2Date(dto.getStartDate()));
+		edition.setEndDate(TmsUtils.string2Date(dto.getEndDate()));
+		edition.setDeadline(TmsUtils.string2Date(dto.getDeadline()));
+		edition.setOpen(dto.isOpen());
+		return edition;
+	}
+	
+	public static EditionDto model2Dto(Edition model) {		
+		EditionDto dto = new EditionDto();
+		dto.setStartDate(TmsUtils.date2String(model.getStartDate()));
+		dto.setEndDate(TmsUtils.date2String(model.getEndDate()));
+		dto.setDeadline(TmsUtils.date2String(model.getDeadline()));
+		dto.setOpen(model.isOpen());
+		return dto;
+	}
+	
+	public static Tag dto2Model(TagDto dto) {		
+		Tag tag = new Tag();
+		tag.setName(dto.getName());
+		return tag;
+	}
+	
+	public static TagDto model2Dto(Tag model) {		
+		TagDto dto = new TagDto();
+		dto.setName(model.getName());
+		return dto;
+	}
+	
 	
 	
 }

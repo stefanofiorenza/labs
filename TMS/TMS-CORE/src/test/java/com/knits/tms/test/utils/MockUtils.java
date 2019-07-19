@@ -1,10 +1,15 @@
 package com.knits.tms.test.utils;
 
+
+import java.util.Date;
+
 import com.knits.tms.beans.CourseDto;
+import com.knits.tms.beans.EditionDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.beans.ModuleDto;
+import com.knits.tms.beans.TagDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Lecture;
@@ -42,6 +47,7 @@ public class MockUtils {
 
 	public static LectureDto mockLectureDto() {
 		LectureDto lectureDto = new LectureDto();
+		lectureDto.setId(111L);
 		lectureDto.setTitle("This Is A Test Title");
 		lectureDto.setContent("This Is A Test Content");
 		return lectureDto;
@@ -94,6 +100,22 @@ public class MockUtils {
 		courseDto.setPublished(true);
 		courseDto.setTitle("ModuleTitleTest");		
 		return courseDto;
+	}
+
+
+	public static EditionDto mockEditionDto() {
+		com.knits.tms.beans.EditionDto editionDto = new EditionDto();
+		editionDto.setStartDate("01-10-2019");
+		editionDto.setEndDate("01-11-2019");
+		editionDto.setDeadline("01-12-2019");
+		editionDto.setOpen(true);
+		return editionDto;
+	}
+
+	public static TagDto mockTagDto() {
+		TagDto tagDto = new TagDto();
+		tagDto.setName("TagNameTest");
+		return tagDto;
 	}
 	
 }

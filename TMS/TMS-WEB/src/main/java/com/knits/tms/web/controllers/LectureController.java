@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,4 +71,22 @@ public class LectureController {
 			  return mav;
 
 		  }
+		  
+          @RequestMapping(value="/edit/{id}", method = RequestMethod.GET)  
+          public ModelAndView edit(@PathVariable Long id, @ModelAttribute("LectureDto") LectureDto lectureDto){  
+              ModelAndView mav = new ModelAndView("frmEditLecture");
+              LectureDto lecture=lectureService.findById(id);  
+              mav.addObject("lecture",lecture);
+              return mav;  
+          }  
+          
+          @RequestMapping(value="/edit/{id}",method = RequestMethod.POST)  
+          public ModelAndView editsave(@ModelAttribute("LectureDto") LectureDto lectureDto){
+        	  lectureService.update(lectureDto); 
+        	  ModelAndView mav = new ModelAndView("frmEditLecture");    	
+        	  mav.addObject("msg", "Lecture edited successfully");
+        	  LectureDto lecture=lectureService.findById(lectureDto.getId());
+        	  mav.addObject("lecture",lecture);
+              return mav;  
+          }  
 }

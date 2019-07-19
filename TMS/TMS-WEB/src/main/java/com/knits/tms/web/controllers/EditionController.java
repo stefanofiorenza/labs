@@ -11,38 +11,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.knits.tms.beans.CourseDto;
-
+import com.knits.tms.beans.EditionDto;
 import com.knits.tms.service.CourseService;
-
+import com.knits.tms.service.EditionService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Controller
-@RequestMapping("/course")
+@RequestMapping("/edition")
 @Slf4j
-public class CourseController {
+public class EditionController {
 	
 	@Autowired
-	private CourseService courseService;
+	private EditionService editionService;
 	
 	
 	 @RequestMapping(value = "/create", method = RequestMethod.GET)
 	  public ModelAndView newCourse(HttpServletRequest request, HttpServletResponse response) {
-		    ModelAndView mav = new ModelAndView("frmNewCourse");
-		    mav.addObject("CourseDto", new CourseDto());
+		    ModelAndView mav = new ModelAndView("frmNewEdition");
+		    mav.addObject("EditionDto", new EditionDto());
 		    return mav;
 
 	  }
 
 	  @RequestMapping(value = "/save", method = RequestMethod.POST)
 	  public ModelAndView moduleProcess(HttpServletRequest request, HttpServletResponse response,
-	  @ModelAttribute("CourseDto") CourseDto courseDto) {
-		  log.info("Reveived course: "+courseDto.toString());
-		  courseService.saveCourse(courseDto);
-		  ModelAndView mav = new ModelAndView("frmNewCourse");
-		  mav.addObject("msg", "Course Saved");
-		  mav.addObject("CourseDto",courseDto);
-		  return mav;
+	  @ModelAttribute("EditionDto") EditionDto editionDto) {
+		  try {
+			  log.info("Reveived edition: "+editionDto.toString());
+			  editionService.saveEdition(editionDto);
+			  ModelAndView mav = new ModelAndView("frmNewEdition");
+			  mav.addObject("msg", "Edition Saved");
+			  mav.addObject("EditionDto",editionDto);
+			  return mav;
+		  }catch (Exception e) {
+			  log.error(e.getMessage(),e);
+			  ModelAndView mav = new ModelAndView("frmNewEdition");
+			  mav.addObject("msg", e.getMessage());
+			  mav.addObject("EditionDto",editionDto);
+			  return mav;
+			  
+		  }
+		  
+		
 
 	  }
 
