@@ -16,6 +16,9 @@ import javax.transaction.Transactional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
+import com.knits.tms.beans.LectureSearchDto;
+import com.knits.tms.beans.TrainerSearchDto;
+import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Trainer;
 
 @Repository
@@ -24,43 +27,76 @@ public class TrainerDao extends GenericDao<Trainer>{
 
 		
 	public Trainer findTrainerByIdCode(String idCode) {		
-		 TypedQuery<Trainer> qryTrainerByName =createNamedQuery("Trainer.ByIdCode");
+		 TypedQuery<Trainer> qryTrainerByName = createNamedQuery("Trainer.ByIdCode");
 		 qryTrainerByName.setParameter("idCode", idCode);
 		 return qryTrainerByName.getSingleResult();
 	}
 	
 	public Trainer findTrainerByIdCodeJqpl(String idCode) {		
-		 TypedQuery<Trainer> qryTrainerByName =createQuery("select T from Trainer T where idCode = :idCode");
+		 TypedQuery<Trainer> qryTrainerByName = createQuery("select T from Trainer T where idCode = :idCode");
 		 qryTrainerByName.setParameter("idCode", idCode);
 		 return qryTrainerByName.getSingleResult();
 	}
 	
+	private List<Trainer> queryWithCriteriaQuery(TrainerSearchDto trainerDto){
+		CriteriaBuilder cb = getCriteriaBuilder();
+		CriteriaQuery<Trainer> cqueryTrainer =cb.createQuery(Trainer.class);// expected result
+		
+		Root<Trainer> trainerTable = cqueryTrainer.from(Trainer.class); // table to query
+		
+		cqueryTrainer.select(trainerTable).distinct(true);
+		
+		if(!StringUtils.isEmpty(trainerDto.getFirstName())) {
+			Predicate filterByName = cb.equal(trainerTable.get("firstName"), trainerDto.getFirstName());			
+			cqueryTrainer.where(filterByName);
+		}
+		
+		if(!StringUtils.isEmpty(trainerDto.getLastName())) {
+			Predicate filterByLastName = cb.equal(trainerTable.get("lastName"), trainerDto.getLastName());			
+			cqueryTrainer.where(filterByLastName);
+		}
+		
+		if(!StringUtils.isEmpty(trainerDto.getEmail())) {
+			Predicate filterByEmail = cb.equal(trainerTable.get("email"), trainerDto.getEmail());			
+			cqueryTrainer.where(filterByEmail);
+		}
+		
+		if(!StringUtils.isEmpty(trainerDto.getIdCode())) {
+			Predicate filterByIdCode = cb.equal(trainerTable.get("idCode"), trainerDto.getIdCode());			
+			cqueryTrainer.where(filterByIdCode);
+		}
+		
+		TypedQuery<Trainer> qrtTrainers = compileCriteriaQuery(cqueryTrainer);		 
+		return qrtTrainers.getResultList();		
+	}
 	
+	public List<Trainer> findTrainerByFilters(TrainerSearchDto trainerDto) {
+			return queryWithCriteriaQuery(trainerDto);					
+		}
 
-	
-	public List<Trainer> findTrainersByFilters(String firstName, String lastName, String email) {
+	public List<Trainer> findTrainerByFilters(String firstName, String lastName, String email) {
 
-		CriteriaBuilder crtBuilder =getCriteriaBuilder();
+		CriteriaBuilder crtBuilder = getCriteriaBuilder();
 		CriteriaQuery<Trainer> crtQueryTrainer =crtBuilder.createQuery(Trainer.class);// expected result
 		
 		Root<Trainer> fromTrainer= crtQueryTrainer.from(Trainer.class); // table to query
 		crtQueryTrainer.select(fromTrainer);
 		
 		
-		ParameterExpression<String> firstNameAsParam=null;		
-		ParameterExpression<String> lastNameAsParam=null;	
-		ParameterExpression<String> emailAsParam=null;	
+		ParameterExpression<String> firstNameAsParam = null;		
+		ParameterExpression<String> lastNameAsParam = null;	
+		ParameterExpression<String> emailAsParam = null;	
 		
 		if(!StringUtils.isEmpty(firstName)) {
 			firstNameAsParam = crtBuilder.parameter(String.class,"firstName");
-			Predicate firstNameFilter=crtBuilder.equal(fromTrainer.get("firstName"), firstNameAsParam);
-			crtQueryTrainer= crtQueryTrainer.where(firstNameFilter);
+			Predicate firstNameFilter = crtBuilder.equal(fromTrainer.get("firstName"), firstNameAsParam);
+			crtQueryTrainer = crtQueryTrainer.where(firstNameFilter);
 		}		
 		
 		if(!StringUtils.isEmpty(lastName)) {
 			lastNameAsParam = crtBuilder.parameter(String.class,"lastName");
-			Predicate lastNameFilter=crtBuilder.equal(fromTrainer.get("lastName"), firstNameAsParam);
-			crtQueryTrainer= crtQueryTrainer.where(lastNameFilter);
+			Predicate lastNameFilter = crtBuilder.equal(fromTrainer.get("lastName"), lastNameAsParam);
+			crtQueryTrainer = crtQueryTrainer.where(lastNameFilter);
 		}
 		
 		
@@ -80,7 +116,7 @@ public class TrainerDao extends GenericDao<Trainer>{
 		 //if(predicates2Paramss.size()
 		 
 		// compile query
-		TypedQuery<Trainer> qryTrainerByFilters =compileCriteriaQuery(crtQueryTrainer);
+		TypedQuery<Trainer> qryTrainerByFilters = compileCriteriaQuery(crtQueryTrainer);
 		
 		if(firstNameAsParam!=null) {
 			qryTrainerByFilters.setParameter(firstNameAsParam, firstName);

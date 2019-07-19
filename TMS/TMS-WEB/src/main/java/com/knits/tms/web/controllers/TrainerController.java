@@ -1,5 +1,7 @@
 package com.knits.tms.web.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.knits.tms.beans.LectureDto;
+import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.beans.TrainerDto;
+import com.knits.tms.beans.TrainerSearchDto;
 import com.knits.tms.service.TrainerService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +44,26 @@ public class TrainerController {
 		  ModelAndView mav = new ModelAndView("frmNewTrainer");
 		  mav.addObject("msg", "Trainer Saved");
 		  mav.addObject("TrainerDto",trainer);
+		  return mav;
+
+	  }
+	  
+	  @RequestMapping(value = "/search", method = RequestMethod.GET)
+	  public ModelAndView trainerSearch(HttpServletRequest request, HttpServletResponse response) {
+		    ModelAndView mav = new ModelAndView("frmSearchTrainer");
+		    mav.addObject("TrainerSearchDto", new TrainerSearchDto());
+		    return mav;
+
+	  }
+	 
+	  @RequestMapping(value = "/search", method = RequestMethod.POST)
+	  public ModelAndView trainerSearchProcess(HttpServletRequest request, HttpServletResponse response,
+	  @ModelAttribute("trainers") TrainerSearchDto trainer) {
+		  List<TrainerDto> trainersFound = trainerService.findTrainerByFilters(trainer);
+		  ModelAndView mav = new ModelAndView("frmSearchTrainer");
+		  mav.addObject("TrainerSearchDto", new TrainerSearchDto());
+		  mav.addObject("msg", "Trainer search submitted");
+		  mav.addObject("trainers",trainersFound);
 		  return mav;
 
 	  }
