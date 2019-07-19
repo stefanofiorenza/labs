@@ -15,6 +15,7 @@
 <a href="module/create">Add a new module</a>
 <a href="topic/create.htm">Add new topic</a>
 <a href="course/create.htm">Add new course</a>
+<a href="edition/create.htm">Add new edition</a>
 
 </body>
 </html>

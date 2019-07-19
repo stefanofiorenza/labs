@@ -1,6 +1,10 @@
 package com.knits.tms.test.utils;
 
+
+import java.util.Date;
+
 import com.knits.tms.beans.CourseDto;
+import com.knits.tms.beans.EditionDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
@@ -94,6 +98,16 @@ public class MockUtils {
 		courseDto.setPublished(true);
 		courseDto.setTitle("ModuleTitleTest");		
 		return courseDto;
+	}
+
+
+	public static EditionDto mockEditionDto() {
+		com.knits.tms.beans.EditionDto editionDto = new EditionDto();
+		editionDto.setStartDate("01-10-2019");
+		editionDto.setEndDate("01-11-2019");
+		editionDto.setDeadline("01-12-2019");
+		editionDto.setOpen(true);
+		return editionDto;
 	}
 	
 }

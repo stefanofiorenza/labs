@@ -1,14 +1,18 @@
 package com.knits.tms.util;
 
+import java.text.ParseException;
+
 import org.springframework.stereotype.Component;
 
 import com.knits.tms.beans.CourseDto;
+import com.knits.tms.beans.EditionDto;
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.ModuleDto;
 import com.knits.tms.beans.TopicDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.model.Course;
+import com.knits.tms.model.Edition;
 import com.knits.tms.model.Employee;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Module;
@@ -98,6 +102,24 @@ public class BeanMappingUtils {
 		dto.setTitle(model.getTitle());
 		dto.setActive(model.isActive());
 		dto.setPublished(model.isPublished());		
+		return dto;
+	}
+
+	public static Edition dto2Model(EditionDto dto) throws ParseException {		
+		Edition edition = new Edition();
+		edition.setStartDate(TmsUtils.string2Date(dto.getStartDate()));
+		edition.setEndDate(TmsUtils.string2Date(dto.getEndDate()));
+		edition.setDeadline(TmsUtils.string2Date(dto.getDeadline()));
+		edition.setOpen(dto.isOpen());
+		return edition;
+	}
+	
+	public static EditionDto model2Dto(Edition model) {		
+		EditionDto dto = new EditionDto();
+		dto.setStartDate(TmsUtils.date2String(model.getStartDate()));
+		dto.setEndDate(TmsUtils.date2String(model.getEndDate()));
+		dto.setDeadline(TmsUtils.date2String(model.getDeadline()));
+		dto.setOpen(model.isOpen());
 		return dto;
 	}
 	
