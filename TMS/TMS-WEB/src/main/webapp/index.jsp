@@ -9,7 +9,7 @@
 <body>
 
 <a href="lecture/create">Add a new lecture</a>
-<p><a href="lecture/prepareSearch">Search for a lecture</a></p>
+<p><a href="lecture/search">Search for a lecture</a></p>
 <p><a href="employee/create">Register</a></p>
 <p><a href="trainer/create">Add a new trainer</a></p>
 <p><a href="trainer/search">Search trainers</a></p>

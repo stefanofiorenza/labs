@@ -50,7 +50,7 @@ public class LectureController {
 
 	  }
 
-		 @RequestMapping(value = "/prepareSearch", method = RequestMethod.GET)
+		 @RequestMapping(value = "/search", method = RequestMethod.GET)
 		  public ModelAndView lectureSearch(HttpServletRequest request, HttpServletResponse response) {
 			    ModelAndView mav = new ModelAndView("frmSearchLectures");
 			    mav.addObject("LectureSearchDto", new LectureSearchDto());
@@ -58,7 +58,7 @@ public class LectureController {
 
 		  }
 		 
-		  @RequestMapping(value = "/doSearch", method = RequestMethod.POST)
+		  @RequestMapping(value = "/search", method = RequestMethod.POST)
 		  public ModelAndView lectureSearchProcess(HttpServletRequest request, HttpServletResponse response,
 		  @ModelAttribute("lectures") LectureSearchDto lecture) {
 			  log.info("Reveived lectures filters: "+lecture.toString());
