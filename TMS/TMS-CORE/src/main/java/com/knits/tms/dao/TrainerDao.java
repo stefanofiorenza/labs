@@ -61,6 +61,11 @@ public class TrainerDao extends GenericDao<Trainer>{
 			cqueryTrainer.where(filterByEmail);
 		}
 		
+		if(!StringUtils.isEmpty(trainerDto.getIdCode())) {
+			Predicate filterByIdCode = cb.equal(trainerTable.get("idCode"), trainerDto.getIdCode());			
+			cqueryTrainer.where(filterByIdCode);
+		}
+		
 		TypedQuery<Trainer> qrtTrainers = compileCriteriaQuery(cqueryTrainer);		 
 		return qrtTrainers.getResultList();		
 	}
