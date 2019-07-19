@@ -82,7 +82,7 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 				@Override
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
 					
-					List<Trainer> trainers =trainerDao.findTrainersByFilters("A Mock FirstName", null, null);
+					List<Trainer> trainers =trainerDao.findTrainerByFilters("A Mock FirstName", null, null);
 					Assert.assertEquals(3,trainers.size()); 	
 				};	
 		});		
