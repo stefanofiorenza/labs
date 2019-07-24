@@ -22,7 +22,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 	}
 
 	private void registerDispatcherServlet(final ServletContext servletContext) {
-		WebApplicationContext dispatcherContext = createContext(MySmvcInitializer.class, AppConfig.class);
+		WebApplicationContext dispatcherContext = createContext(TmsWebContext.class, AppConfig.class);
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(
 				dispatcherContext);		
 		

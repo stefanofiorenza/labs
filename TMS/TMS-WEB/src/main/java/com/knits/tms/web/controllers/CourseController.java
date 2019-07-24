@@ -28,7 +28,7 @@ public class CourseController {
 	
 	 @RequestMapping(value = "/create", method = RequestMethod.GET)
 	  public ModelAndView newCourse(HttpServletRequest request, HttpServletResponse response) {
-		    ModelAndView mav = new ModelAndView("frmNewCourse");
+		    ModelAndView mav = new ModelAndView("view/courses/addCourse");
 		    mav.addObject("CourseDto", new CourseDto());
 		    return mav;
 
@@ -39,7 +39,7 @@ public class CourseController {
 	  @ModelAttribute("CourseDto") CourseDto courseDto) {
 		  log.info("Reveived course: "+courseDto.toString());
 		  courseService.saveCourse(courseDto);
-		  ModelAndView mav = new ModelAndView("frmNewCourse");
+		  ModelAndView mav = new ModelAndView("view/courses/addCourse");
 		  mav.addObject("msg", "Course Saved");
 		  mav.addObject("CourseDto",courseDto);
 		  return mav;

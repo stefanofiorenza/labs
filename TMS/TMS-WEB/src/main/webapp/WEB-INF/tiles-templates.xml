@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!--  <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+-->
+<tiles-definitions>
+ 
+ <!--  TEMPLATES -->
+ <definition name="baseLayout" template="/WEB-INF/templates/main.jsp">
+ 
+  	<put-attribute name="head-title" value="Talent Management System" />
+  	<put-attribute name="head-meta" value="/WEB-INF/templates/head/metatags.jsp" />
+  	<put-attribute name="head-bootstrap" value="/WEB-INF/templates/head/bootstrap.jsp" />
+  	<put-attribute name="head-common" value="/WEB-INF/templates/head/common.jsp" />
+  	<put-attribute name="head-jquery" value="/WEB-INF/templates/head/jquery.jsp" />
+  		
+  	<put-attribute name="nav-bar" value="/WEB-INF/templates/body/navBar.jsp" />
+  	<put-attribute name="left-menu" value="/WEB-INF/templates/body/leftMenu.jsp" />
+  	<put-attribute name="content" value="/WEB-INF/templates/body/content.jsp" />
+  	<put-attribute name="footer" value="/WEB-INF/templates/body/footer.jsp" />
+  	<put-attribute name="footer-js" value="/WEB-INF/templates/body/footer.jsp" />
+
+ </definition>
+ 
+   
+</tiles-definitions>
