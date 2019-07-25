@@ -22,7 +22,6 @@ import com.knits.tms.model.Topic;
 import com.knits.tms.model.Trainer;
 
 
-@Component
 public class BeanMappingUtils {
 	
 	

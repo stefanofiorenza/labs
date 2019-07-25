@@ -18,8 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration 
 @EnableWebMvc 
-@ComponentScan(value={"com.knits.tms.web.controllers"})
-@Slf4j
+@ComponentScan(value={"com.knits.tms.web.controllers"})	
 public class TmsWebContext implements WebMvcConfigurer {
 
 	

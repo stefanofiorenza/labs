@@ -18,14 +18,16 @@ import com.knits.tms.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/main")
 public class MainController {
 		
-	 @RequestMapping(value = "/index", method = RequestMethod.GET)
-	 public ModelAndView newCourse(HttpServletRequest request, HttpServletResponse response) {
+	 @RequestMapping(value = "/main/index", method = RequestMethod.GET)
+	 public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
 		    return  new ModelAndView("view/main/index");	
 	 }
 
-
-
+	 @RequestMapping(value = "/", method = RequestMethod.GET)
+	 public ModelAndView defaultPage(HttpServletRequest request, HttpServletResponse response) {
+		    return  new ModelAndView("view/main/index");	
+	 }
+	 
 }

@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariDataSource;
 
-@Configuration
-@EnableTransactionManagement
-@ComponentScan({"com.knits.tms.service,com.knits.tms.dao","com.knits.tms.service", "com.knits.tms.util", "com.knits.tms.beans"})
-@PropertySource("classpath:database.properties")
+//@Configuration
+//@EnableTransactionManagement
+//@ComponentScan({"com.knits.tms.service,com.knits.tms.dao","com.knits.tms.service", "com.knits.tms.util", "com.knits.tms.beans"})
+//@PropertySource("classpath:database.properties")
 public class AppConfig {
 
 	private final String URL = "url";

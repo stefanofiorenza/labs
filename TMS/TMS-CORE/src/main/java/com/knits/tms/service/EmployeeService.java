@@ -1,10 +1,10 @@
 package com.knits.tms.service;
 
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knits.tms.beans.EmployeeDto;
 import com.knits.tms.dao.EmployeeDao;
@@ -15,7 +15,7 @@ import com.knits.tms.util.BeanMappingUtils;
 import com.knits.tms.util.TmsConsts;
 
 @Service
-@Transactional(value = TxType.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class EmployeeService {
 
 	@Autowired

@@ -6,6 +6,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   
+   <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+    </parent>
+    
+    
    <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -37,24 +44,45 @@
     
        <dependencies>
               
-       	<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
+     <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
+		 <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 		
+			<!-- DB libs Override default version (8.0.13)-->	
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency> 
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>${mysql.driver}</version>
+		</dependency>
 		
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<!--  
          <dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-core</artifactId>
@@ -74,8 +102,11 @@
 		   <artifactId>hibernate-jpamodelgen</artifactId>
 		   <version>${hibernate.version}</version>
 		</dependency>
+	-->
 	
-		<!-- J2EE Web api -->
+	
+		<!-- J2EE Web api --> 
+		<!--
 	 	<dependency>
 		    <groupId>javax.servlet.jsp</groupId>
 		    <artifactId>javax.servlet.jsp-api</artifactId>
@@ -87,7 +118,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+		
 		</dependency>
   
  	 	<dependency>
@@ -96,15 +127,12 @@
             <version>${javax.servlet-api.version}</version>
             <scope>provided</scope>
        </dependency>
+       -->
        
-       
-		<!-- DB libs -->	
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>${mysql.driver}</version>
-		</dependency>
+	
 		
+		<!-- DB libs -->
+		<!-- Already in spring-boot-starter-data-jpa
 		<dependency>
     		<groupId>com.zaxxer</groupId>
     		<artifactId>HikariCP</artifactId>
@@ -117,7 +145,11 @@
 			<version>${hsqldb.version}</version>			
 		</dependency>
 		
-		<!-- Other libs -->	
+		
+		-->
+		<!-- Other libs -->
+
+		<!--
   		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>		
@@ -129,15 +161,22 @@
 			<artifactId>commons-lang3</artifactId>		
 			<version>${commons.lang.version}</version>
 		</dependency>	
-						
+			-->			
+			
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>				
+		</dependency>
+			
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>	
-			<version>${commons.io.version}</version>			
+			<version>${commons.io.version}</version>						
 		</dependency>
 	
 	
 		<!-- LogBack dependencies -->
+		<!--
 			<dependency>
 	            <groupId>org.slf4j</groupId>
 	            <artifactId>slf4j-api</artifactId>
@@ -150,24 +189,30 @@
 	            <version>${logback.version}</version>
 	            <scope>runtime</scope> 
 	         </dependency>	   
+	         -->
 	          
-	        <dependency> <!-- needed to bridge to slf4j for projects that use the log4j APIs directly -->
+	          <!-- needed to bridge to slf4j for projects that use the log4j APIs directly -->
+	    	<!-- 
+	    	<dependency> 
 	            <groupId>org.slf4j</groupId>
 	            <artifactId>log4j-over-slf4j</artifactId>
 	             <version>${slf4j.org.version}</version>
 	        </dependency>
-	    
+	   			 -->
 	
-		<!-- TEST libs -->
+	
+	
+			<!-- TEST libs already in spring-boot-starter-test -->
 			
 			  <!--  test -->
-			  			
+			  	<!-- 		
 		        <dependency>
 		            <groupId>junit</groupId>
 		            <artifactId>junit</artifactId>
 		            <version>${junit.version}</version>
 		            <scope>test</scope>
 		        </dependency>
+		       
 		        <dependency>
 		            <groupId>org.hamcrest</groupId>
 		            <artifactId>hamcrest-core</artifactId>
@@ -199,6 +244,7 @@
 				    <scope>test</scope>
 				    <version>${spring.version}</version>
 				</dependency>
+				 -->
     
     </dependencies>
     

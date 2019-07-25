@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
@@ -16,17 +18,15 @@ import com.knits.tms.model.Lecture;
 import com.knits.tms.util.BeanMappingUtils;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 public class LectureService {
 	
 	@Autowired
 	private LectureDao lectureDao;
 	
-	@Autowired
-	private BeanMappingUtils beanMappingUtils;
 	
 	public void save(LectureDto lectureDto) {
-		Lecture lecture = beanMappingUtils.dto2Model(lectureDto);
+		Lecture lecture = BeanMappingUtils.dto2Model(lectureDto);
 		lectureDao.save(lecture);
 	}
 	
@@ -36,7 +36,7 @@ public class LectureService {
 		List<LectureDto> lectureDtos = new ArrayList<LectureDto>();
 		
 		for(Lecture lecture : lectures) {
-			lectureDtos.add(beanMappingUtils.model2Dto(lecture));
+			lectureDtos.add(BeanMappingUtils.model2Dto(lecture));
 		}
 		
 		return lectureDtos;
@@ -56,7 +56,7 @@ public class LectureService {
 	
 	public LectureDto findById(Long id) {
 		Lecture lecture = lectureDao.findById(id);
-		LectureDto dto = beanMappingUtils.model2Dto(lecture);
+		LectureDto dto = BeanMappingUtils.model2Dto(lecture);
 		return dto;
 	}
 

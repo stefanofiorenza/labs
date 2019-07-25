@@ -3,30 +3,26 @@ package com.knits.tms.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.beans.TrainerSearchDto;
 import com.knits.tms.dao.TrainerDao;
-import com.knits.tms.model.Lecture;
 import com.knits.tms.model.Trainer;
 import com.knits.tms.util.BeanMappingUtils;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 public class TrainerService {
 	@Autowired
 	private TrainerDao trainerDao;
 	
-	@Autowired
-	private BeanMappingUtils beanMappingUtils;
 	
 	public void save(TrainerDto trainerDto) {
-		Trainer trainer = beanMappingUtils.dto2Model(trainerDto);
+		Trainer trainer = BeanMappingUtils.dto2Model(trainerDto);
 		trainerDao.save(trainer);
 	}
 	
@@ -35,14 +31,14 @@ public class TrainerService {
 		List<TrainerDto> trainerDtos = new ArrayList<TrainerDto>();
 		
 		for(Trainer trainer : trainers) {
-			trainerDtos.add(beanMappingUtils.model2Dto(trainer));
+			trainerDtos.add(BeanMappingUtils.model2Dto(trainer));
 		}
 		
 		return trainerDtos;
 	}
 	
 	public void update(TrainerDto dto) {
-		Trainer trainer = beanMappingUtils.dto2Model(dto);
+		Trainer trainer = BeanMappingUtils.dto2Model(dto);
 		trainerDao.update(trainer);
 	}
 
