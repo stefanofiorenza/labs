@@ -36,8 +36,20 @@
 	
   	<logger name="org.hibernate" additivity="false">
 			<level value="INFO" />
+			<appender-ref ref="dailyRollingFileAppender" />
 			<appender-ref ref="consoleAppender" />
 	</logger>
+	
+	
+		<logger name="com.zaxxer" additivity="false">
+			<level value="INFO" />
+			<appender-ref ref="dailyRollingFileAppender" />
+			<appender-ref ref="consoleAppender" />
+	</logger>
+	
+	
+	
+	
 	
 	<logger name="org.springframework" additivity="false">
 			<level value="debug" />
