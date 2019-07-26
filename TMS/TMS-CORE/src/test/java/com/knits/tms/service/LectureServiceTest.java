@@ -2,6 +2,7 @@ package com.knits.tms.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,6 +18,7 @@ import org.mockito.stubbing.OngoingStubbing;
 import com.knits.tms.beans.LectureDto;
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.dao.LectureDao;
+import com.knits.tms.dao.filters.LectureFilter;
 import com.knits.tms.model.Lecture;
 import com.knits.tms.test.utils.AssertionUtils;
 import com.knits.tms.test.utils.MockUtils;
@@ -76,7 +78,8 @@ public class LectureServiceTest {
 		foundfromdatabase.add(MockUtils.mockLecture());
 		foundfromdatabase.add(MockUtils.mockLecture());
 		
-		when(lectureDao.findLectureByFilters(lecturesearchDto)).thenReturn(foundfromdatabase);
+		LectureFilter filter = new LectureFilter(lecturesearchDto);
+		when(lectureDao.findAll(filter)).thenReturn(foundfromdatabase);
 		List <LectureDto> lecturesReturned = lectureService.findLectureByFilters(lecturesearchDto);
 		
 //		then
@@ -95,7 +98,8 @@ public class LectureServiceTest {
 		
 		//In Database..
 		Lecture lecture = BeanMappingUtils.dto2Model(MockUtils.mockLectureDto());
-		when(lectureDao.findById(lectureDto.getId())).thenReturn(lecture);
+		Optional<Lecture> lectureOptional = Optional.of(lecture);
+		when(lectureDao.findById(lectureDto.getId())).thenReturn(lectureOptional);
 		
 		//User edits...
 		lectureDto.setTitle("Hei");		
@@ -105,7 +109,7 @@ public class LectureServiceTest {
 				
 	
 		//then 
-		Mockito.verify(lectureDao,Mockito.times(1)).update(lectureArgCaptor.capture());
+		Mockito.verify(lectureDao,Mockito.times(1)).save(lectureArgCaptor.capture());
 		
 		Lecture lectureTwo = lectureArgCaptor.getValue();
 		

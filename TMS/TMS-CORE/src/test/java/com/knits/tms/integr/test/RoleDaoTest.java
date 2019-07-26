@@ -15,7 +15,7 @@ import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.RoleDao;
 import com.knits.tms.model.Role;
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RoleDaoTest extends GenericTransactionalTest {
 	
@@ -83,7 +83,7 @@ public class RoleDaoTest extends GenericTransactionalTest {
 		Assert.assertNotEquals("test", role.getName());
 		
 		role.setName("test");
-		roleDao.update(role);
+		roleDao.save(role);
 		Assert.assertEquals("test", role.getName());
 				
 		}
@@ -105,7 +105,7 @@ public class RoleDaoTest extends GenericTransactionalTest {
 			 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				for (Role role : roleDao.listAll()){
+				for (Role role : roleDao.findAll()){
 					roleDao.delete(role);
 				}					    	
 			};	

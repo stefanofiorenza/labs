@@ -14,6 +14,8 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.knits.tms.beans.LectureSearchDto;
@@ -23,9 +25,11 @@ import com.knits.tms.model.Trainer;
 
 @Repository
 @Transactional
-public class TrainerDao extends GenericDao<Trainer>{
+public interface TrainerDao extends JpaRepository<Trainer,Long>,JpaSpecificationExecutor<Trainer> {
 
-		
+	Trainer findByIdCode(String idCode);
+	
+	/*
 	public Trainer findTrainerByIdCode(String idCode) {		
 		 TypedQuery<Trainer> qryTrainerByName = createNamedQuery("Trainer.ByIdCode");
 		 qryTrainerByName.setParameter("idCode", idCode);
@@ -202,7 +206,7 @@ public class TrainerDao extends GenericDao<Trainer>{
 		return Trainer.class;
 	}
 	
-	
+	*/
 
 	
 	/*

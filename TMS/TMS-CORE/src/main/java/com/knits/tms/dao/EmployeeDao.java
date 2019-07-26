@@ -1,17 +1,13 @@
 package com.knits.tms.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knits.tms.model.Employee;
 
 
 @Repository
-public class EmployeeDao extends GenericDao<Employee> {
-
-       @Override
-       protected Class<Employee> getEntityClass() {
-              // TODO Auto-generated method stub
-              return null;
-       }
-
+@Transactional
+public interface EmployeeDao extends JpaRepository<Employee,Long> {
 }

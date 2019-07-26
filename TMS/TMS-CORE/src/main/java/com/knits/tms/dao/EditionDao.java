@@ -1,17 +1,14 @@
 package com.knits.tms.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knits.tms.model.Edition;
 
 
 @Repository
-public class EditionDao extends GenericDao<Edition> {
-	
-	  @Override
-      protected Class<Edition> getEntityClass() {
-             // TODO Auto-generated method stub
-             return null;
-      }
+@Transactional
+public interface EditionDao extends JpaRepository<Edition,Long> {	
 
 }

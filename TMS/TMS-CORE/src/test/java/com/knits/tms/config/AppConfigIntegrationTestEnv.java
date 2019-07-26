@@ -1,31 +1,23 @@
 package com.knits.tms.config;
 
-import java.util.Properties;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({"com.knits.tms.service,com.knits.tms.dao","com.knits.tms.service", "com.knits.tms.util"})
+@ComponentScan({"com.knits.tms.service"})
+@EnableJpaRepositories(basePackages = "com.knits.tms.dao")
+@EntityScan( basePackages = {"com.knits.tms.model"} )
 @PropertySource("classpath:database-int-test.properties")
+@EnableAutoConfiguration
 public class AppConfigIntegrationTestEnv {
 
-	
+	/*
 	private final String URL = "url";
 	private final String USER = "dbuser";
 	private final String DRIVER = "driver";
@@ -75,4 +67,5 @@ public class AppConfigIntegrationTestEnv {
         hibernateProperties.setProperty(org.hibernate.cfg.Environment.CURRENT_SESSION_CONTEXT_CLASS,"thread");
         return hibernateProperties;
     }
+    */
 }

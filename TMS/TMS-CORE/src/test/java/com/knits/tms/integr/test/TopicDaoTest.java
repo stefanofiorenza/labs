@@ -15,7 +15,7 @@ import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.TopicDao;
 import com.knits.tms.model.Topic;
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TopicDaoTest extends GenericTransactionalTest {
 	
@@ -83,7 +83,7 @@ public class TopicDaoTest extends GenericTransactionalTest {
 		Assert.assertNotEquals("test", topic.getName());
 		
 		topic.setName("test");
-		topicDao.update(topic);
+		topicDao.save(topic);
 		Assert.assertEquals("test", topic.getName());
 				
 		}
@@ -105,7 +105,7 @@ public class TopicDaoTest extends GenericTransactionalTest {
 			 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				for (Topic topic : topicDao.listAll()){
+				for (Topic topic : topicDao.findAll()){
 					topicDao.delete(topic);
 				}					    	
 			};	

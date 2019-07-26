@@ -6,7 +6,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 
-@ContextConfiguration(classes = AppConfigIntegrationTestEnv.class)
+//@ContextConfiguration(classes = AppConfigIntegrationTestEnv.class)
+@ContextConfiguration(classes =AppConfigIntegrationTestEnv.class)
 public class GenericTransactionalTest {
 	
 	@Autowired

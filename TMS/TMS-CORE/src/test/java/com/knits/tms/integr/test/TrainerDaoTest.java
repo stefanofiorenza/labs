@@ -18,11 +18,13 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.TrainerDao;
+import com.knits.tms.dao.filters.TrainerFilter;
+import com.knits.tms.beans.TrainerSearchDto;
 import com.knits.tms.config.AppConfigIntegrationTestEnv;
 import com.knits.tms.model.Trainer;
 
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TrainerDaoTest extends GenericTransactionalTest{
 		
@@ -55,7 +57,7 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 				@Override
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
 					
-					Trainer trainer =trainerDao.findTrainerByIdCode("123456");
+					Trainer trainer =trainerDao.findByIdCode("123456");
 					Assert.assertNotNull(trainer); 	
 				};	
 		});		
@@ -68,7 +70,7 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 				@Override
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
 					
-					Trainer trainer =trainerDao.findTrainerByIdCodeJqpl("123456");
+					Trainer trainer =trainerDao.findByIdCode("123456");
 					Assert.assertNotNull(trainer); 	
 				};	
 		});		
@@ -81,8 +83,10 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 		transactionTemplate.execute(new TransactionCallbackWithoutResult() {				 
 				@Override
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
-					
-					List<Trainer> trainers =trainerDao.findTrainerByFilters("A Mock FirstName", null, null);
+					TrainerSearchDto searchDto = new TrainerSearchDto();
+					searchDto.setFirstName("A Mock FirstName");
+					List<Trainer> trainers = trainerDao.findAll(new TrainerFilter(searchDto));
+					//List<Trainer> trainers =trainerDao.findTrainerByFilters("A Mock FirstName", null, null);
 					Assert.assertEquals(3,trainers.size()); 	
 				};	
 		});		
@@ -105,7 +109,7 @@ public class TrainerDaoTest extends GenericTransactionalTest{
 			 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				for (Trainer trainer : trainerDao.listAll()){
+				for (Trainer trainer : trainerDao.findAll()){
 					trainerDao.delete(trainer);
 				}					    	
 			};	

@@ -1,42 +1,76 @@
-package com.knits.tms.dao;
+package com.knits.tms.dao.filters;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.knits.tms.beans.LectureSearchDto;
-import com.knits.tms.model.Course;
 import com.knits.tms.model.Lecture;
 
-@Repository
-@Transactional
-public interface LectureDao extends JpaRepository<Lecture,Long>,JpaSpecificationExecutor<Lecture> {
 
-	List<Lecture>findByIdIn(Set<Long> ids);
-	/*
+public class LectureFilter implements  Specification<Lecture>{
+
 	@Override
-	protected Class<Lecture> getEntityClass() {
-		return Lecture.class;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((filter == null) ? 0 : filter.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LectureFilter other = (LectureFilter) obj;
+		if (filter == null) {
+			if (other.filter != null)
+				return false;
+		} else if (!filter.equals(other.filter))
+			return false;
+		return true;
+	}
+
+
+	private LectureSearchDto filter;
+	
+	public LectureFilter(LectureSearchDto filter) {
+		this.filter =filter;
 	}
 	
-public List<Lecture> findLectureByFilters(LectureSearchDto lectureDto) {
+	
+	@Override
+	public Predicate toPredicate(Root<Lecture> lectureTable, CriteriaQuery<?> query, CriteriaBuilder cb) {
+		query.distinct(true);
+		List<Predicate> predicates = new ArrayList<>();
 		
-		//return queryWithJpql(courseSearchDto);
-		return queryWithCriteriaQuery(lectureDto);					
+		if(!StringUtils.isEmpty(this.filter.getTitle())) {
+			Predicate filterByTitle=cb.equal(lectureTable.get("title"), this.filter.getTitle());			
+			predicates.add(filterByTitle);
+		}
+		
+		if(!StringUtils.isEmpty(this.filter.getContent())) {
+			Predicate filterByContent=cb.equal(lectureTable.get("content"), this.filter.getContent());			
+			predicates.add(filterByContent);
+		}
+		
+		 return cb.and(predicates.toArray(new Predicate[predicates.size()]));		
 	}
 	
 	
+	/*
 	private List<Lecture> queryWithCriteriaQuery(LectureSearchDto lectureDto){
 		CriteriaBuilder cb =getCriteriaBuilder();
 		CriteriaQuery<Lecture> cqueryLecture =cb.createQuery(Lecture.class);// expected result

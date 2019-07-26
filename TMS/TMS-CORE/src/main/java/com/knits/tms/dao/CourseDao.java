@@ -15,7 +15,10 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.SetJoin;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -28,9 +31,15 @@ import com.knits.tms.model.Trainer;
 import lombok.extern.slf4j.Slf4j;
 
 @Repository
-@Slf4j
-public class CourseDao extends GenericDao<Course>{
+@Transactional
+public interface CourseDao extends JpaRepository<Course,Long>,JpaSpecificationExecutor<Course>{
 
+	
+	
+	Course findByTitle(String title);
+	
+	
+	/*
 	@Override
 	protected Class<Course> getEntityClass() {
 		return Course.class;
@@ -137,6 +146,6 @@ public class CourseDao extends GenericDao<Course>{
 		return qryCourses.getResultList();		
 	}
 	
-	
+	*/
 	
 }

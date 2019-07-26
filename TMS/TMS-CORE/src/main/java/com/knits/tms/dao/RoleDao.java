@@ -1,20 +1,19 @@
 package com.knits.tms.dao;
 
-import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.knits.tms.model.Role;
 
 @Repository
-public class RoleDao extends GenericDao<Role> {
+@Transactional
+public interface RoleDao extends JpaRepository<Role,Long> {
 
-	@Override
-	protected Class<Role> getEntityClass() {
-		return Role.class;
-	}
+	 Role findByName(String name);
 	
-
+/*
 	public Role findByName(String name) {
 		
 		TypedQuery<Role> query  =createNamedQuery("Role.ByName");
@@ -22,6 +21,6 @@ public class RoleDao extends GenericDao<Role> {
 		return query.getSingleResult();
 	}
 	
-
+*/
 	
 }

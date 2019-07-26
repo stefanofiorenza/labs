@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knits.tms.beans.TrainerDto;
 import com.knits.tms.beans.TrainerSearchDto;
 import com.knits.tms.dao.TrainerDao;
+import com.knits.tms.dao.filters.TrainerFilter;
 import com.knits.tms.model.Trainer;
 import com.knits.tms.util.BeanMappingUtils;
 
@@ -26,8 +27,9 @@ public class TrainerService {
 		trainerDao.save(trainer);
 	}
 	
-	public List<TrainerDto> findTrainerByFilters(TrainerSearchDto dto) {
-		List<Trainer> trainers = trainerDao.findTrainerByFilters(dto);
+	public List<TrainerDto> findTrainerByFilters(TrainerSearchDto searchDto) {
+	//	List<Trainer> trainers = trainerDao.findTrainerByFilters(dto);
+		List<Trainer> trainers = trainerDao.findAll(new TrainerFilter(searchDto));
 		List<TrainerDto> trainerDtos = new ArrayList<TrainerDto>();
 		
 		for(Trainer trainer : trainers) {
@@ -39,7 +41,7 @@ public class TrainerService {
 	
 	public void update(TrainerDto dto) {
 		Trainer trainer = BeanMappingUtils.dto2Model(dto);
-		trainerDao.update(trainer);
+		trainerDao.save(trainer);
 	}
 
 }

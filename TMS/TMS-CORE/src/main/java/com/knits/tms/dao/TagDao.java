@@ -1,17 +1,13 @@
 package com.knits.tms.dao;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.knits.tms.model.Tag;
 
 @Repository
-public class TagDao extends GenericDao<Tag>{
-
-	@Override
-	protected Class<Tag> getEntityClass() {
-		return Tag.class;
-	}
-
-	
-	
+@Transactional
+public interface  TagDao extends JpaRepository<Tag,Long>{	
 }

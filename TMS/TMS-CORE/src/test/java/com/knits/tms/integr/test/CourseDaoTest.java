@@ -19,6 +19,7 @@ import com.knits.tms.config.GenericTransactionalTest;
 import com.knits.tms.dao.CourseDao;
 import com.knits.tms.dao.TagDao;
 import com.knits.tms.dao.TopicDao;
+import com.knits.tms.dao.filters.CourseFilter;
 import com.knits.tms.model.Course;
 import com.knits.tms.model.Tag;
 import com.knits.tms.model.Topic;
@@ -26,7 +27,7 @@ import com.knits.tms.model.Topic;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @Slf4j
 public class CourseDaoTest extends GenericTransactionalTest{
@@ -62,9 +63,9 @@ public class CourseDaoTest extends GenericTransactionalTest{
 				CourseSearchDto courseFilterByTitle = new CourseSearchDto();
 				
 				
-//				courseFilterByTitle.setTitle("title1");
-//				List<Course> courses =courseDao.findCourseByFilters(courseFilterByTitle);				
-//				Assert.assertEquals(1, courses.size());
+				courseFilterByTitle.setTitle("title1");
+				List<Course> courses =courseDao.findAll(new CourseFilter(courseFilterByTitle));					
+				Assert.assertEquals("title filter failure: expected 1 found "+courses.size(),1, courses.size());
 				
 				
 				
@@ -73,7 +74,8 @@ public class CourseDaoTest extends GenericTransactionalTest{
 				tagNames.add("title1.AMockTag1");
 				courseFilterByTitle.setTags(tagNames);
 				
-				List<Course> courses =courseDao.findCourseByFilters(courseFilterByTitle);				
+				
+				courses =courseDao.findAll(new CourseFilter(courseFilterByTitle));					
 				Assert.assertEquals(1, courses.size());
 				logCourseData(courses.get(0));
 				
@@ -134,15 +136,15 @@ public class CourseDaoTest extends GenericTransactionalTest{
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 
-				for (Tag tag: tagDao.listAll()) {
+				for (Tag tag: tagDao.findAll()) {
 					tagDao.delete(tag);
 				}
 				
-				for (Topic topic: topicDao.listAll()) {
+				for (Topic topic: topicDao.findAll()) {
 					topicDao.delete(topic);
 				}
 				
-				for (Course course: courseDao.listAll()) {
+				for (Course course: courseDao.findAll()) {
 					courseDao.delete(course);
 				}
 			}

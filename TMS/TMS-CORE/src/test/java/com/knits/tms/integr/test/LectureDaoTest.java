@@ -2,6 +2,7 @@ package com.knits.tms.integr.test;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -16,21 +17,21 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
 import com.knits.tms.beans.LectureSearchDto;
 import com.knits.tms.config.GenericTransactionalTest;
-import com.knits.tms.dao.GenericDao;
 import com.knits.tms.dao.LectureDao;
+import com.knits.tms.dao.filters.LectureFilter;
 import com.knits.tms.model.Lecture;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Ignore
+//@Ignore
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LectureDaoTest extends GenericTransactionalTest {
 	
 	@Autowired
 	private LectureDao lectureDao;
-	@Autowired
-	private GenericDao<Lecture> genericDao;
+	
+
 
 	
 	@Before
@@ -52,7 +53,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		LectureSearchDto lectureFilterByTitle = new LectureSearchDto();
 		lectureFilterByTitle.setTitle("titleSaveTest");
 		
-		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
+		List<Lecture> lectures = lectureDao.findAll(new LectureFilter(lectureFilterByTitle));	
 		Assert.assertEquals(0, lectures.size());
 		
 		Lecture lecture = new Lecture();
@@ -62,7 +63,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 
 		lectureDao.save(lecture);
 	
-		lectures =lectureDao.findLectureByFilters(lectureFilterByTitle);
+		lectures = lectureDao.findAll(new LectureFilter(lectureFilterByTitle));
 		
 		Assert.assertEquals(1, lectures.size());
 		
@@ -85,7 +86,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		LectureSearchDto lectureFilterByTitle = new LectureSearchDto();
 		lectureFilterByTitle.setTitle("title1");
 		
-		List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
+		List<Lecture> lectures = lectureDao.findAll(new LectureFilter(lectureFilterByTitle));
 		Assert.assertEquals(1, lectures.size());
 		
 		Lecture lecture =lectures.get(0);	
@@ -95,10 +96,10 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		lecture.setTitle("testTitle");
 		lecture.setContent("testContent");
 
-		lectureDao.update(lecture);
+		lectureDao.save(lecture);
 		
 		lectureFilterByTitle.setTitle("testTitle");
-		lectures =lectureDao.findLectureByFilters(lectureFilterByTitle);
+		lectures = lectureDao.findAll(new LectureFilter(lectureFilterByTitle));
 		
 		lecture =lectures.get(0);
 		
@@ -118,14 +119,14 @@ public class LectureDaoTest extends GenericTransactionalTest {
 				LectureSearchDto lectureFilterByTitle = new LectureSearchDto();
 				lectureFilterByTitle.setTitle("title1");
 				
-				List<Lecture> lectures = lectureDao.findLectureByFilters(lectureFilterByTitle);
+				List<Lecture> lectures = lectureDao.findAll(new LectureFilter(lectureFilterByTitle));			
 				Assert.assertEquals(1, lectures.size());
 				
 				Lecture lecture =lectures.get(0);	
 
 				lectureDao.delete(lecture);
 				
-				lectures =lectureDao.findLectureByFilters(lectureFilterByTitle);
+				lectures =lectureDao.findAll(new LectureFilter(lectureFilterByTitle));
 				Assert.assertEquals(0, lectures.size());
 				
 				
@@ -140,7 +141,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 			
-				List<Lecture> lectures = lectureDao.listAll();
+				List<Lecture> lectures = lectureDao.findAll();
 				
 				for(Lecture lectur : lectures) {
 					log.info("ListAllTest OLDLIST:" + lectur.toString());
@@ -154,18 +155,8 @@ public class LectureDaoTest extends GenericTransactionalTest {
 
 				lectureDao.save(lecture);
 				
-				lectures =lectureDao.listAll();
-				Assert.assertEquals(size +1, lectures.size());
-				
-				Long id = 0L;
-				
-				for(Lecture lectur : lectures) {
-					Assert.assertTrue(lectur.getId()>id);
-					id = lectur.getId();
-					log.info("ListAllTest LIST:" + lectur.toString());
-				}
-				
-				
+				lectures =lectureDao.findAll();
+				Assert.assertEquals(size +1, lectures.size());				
 			}
 		});
 		
@@ -177,12 +168,12 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-				List<Lecture> lectures = lectureDao.listAll();
+				List<Lecture> lectures = lectureDao.findAll();
 				
 				Lecture lecture = lectures.get(0);
 				Long id = lecture.getId();
 				
-				Lecture lectureTwo = lectureDao.findById(id);
+				Lecture lectureTwo = lectureDao.findById(id).get();
 			
 				Assert.assertEquals(lecture.getTitle(), lectureTwo.getTitle());
 				Assert.assertEquals(lecture.getContent(),lectureTwo.getContent());
@@ -198,7 +189,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-				List<Lecture> lectures = lectureDao.listAll();
+				List<Lecture> lectures = lectureDao.findAll();
 				
 				Lecture lecture = lectures.get(0);
 				Long id = lecture.getId();
@@ -210,8 +201,8 @@ public class LectureDaoTest extends GenericTransactionalTest {
 		        hash_Set.add(id); 
 		        hash_Set.add(id2); 
 				
-				List <Lecture> lecturesByIds = lectureDao.findByIds(hash_Set);
-				
+				List <Lecture> lecturesByIds = lectureDao.findByIdIn(hash_Set);
+							
 				Assert.assertTrue(lecturesByIds.contains(lecture));
 				Assert.assertTrue(lecturesByIds.contains(lectureTwo));
 				
@@ -227,16 +218,18 @@ public class LectureDaoTest extends GenericTransactionalTest {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 	
-				List<Lecture> lectures = lectureDao.listAll();
+				List<Lecture> lectures = lectureDao.findAll();
 				
 				Lecture lecture = lectures.get(0);
 				Long id = lecture.getId();
 				
-				Assert.assertNotNull(lectureDao.findById(id));
+				Lecture lectureToDelete =lectureDao.findById(id).get();
+				Assert.assertNotNull(lectureToDelete);
 				
-				lectureDao.delete(id);
+				lectureDao.delete(lectureToDelete);
 				
-				Assert.assertNull(lectureDao.findById(id));
+				Optional<Lecture> lectureNotFound =lectureDao.findById(id);
+				Assert.assertFalse(lectureNotFound.isPresent());
 				
 				
 			}
@@ -291,7 +284,7 @@ public class LectureDaoTest extends GenericTransactionalTest {
 //					topicDao.delete(topic);
 //				}
 				
-				for (Lecture lecture: lectureDao.listAll()) {
+				for (Lecture lecture: lectureDao.findAll()) {
 					lectureDao.delete(lecture);
 				}
 			}
